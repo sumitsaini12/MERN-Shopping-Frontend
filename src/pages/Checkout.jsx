@@ -315,6 +315,8 @@ function Checkout() {
 
           </form>
         </div>
+
+        {/* shopping Cart page */}
         <div className="lg:col-span-2">
           <div className="mx-auto mt-12 bg-white max-w-7xl px-0 sm:px-0 lg:px-0">
             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
