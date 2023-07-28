@@ -26,17 +26,13 @@ export function fetchProductsByFilters(filter, sort, pagination) {
   for (let key in pagination) {
     queryString += `${key}=${pagination[key]}&`;
   }
-   return axios.get(`http://localhost:3000/products?${queryString}`);
-
+  return axios.get(`http://localhost:3000/products?${queryString}`);
 }
 
+export function fetchBrands() {
+  return axios.get("http://localhost:3000/brands");
+}
 
-
-// axios({
-//   url: 'http://127.0.0.1/myapi/test.php',
-//   method: 'get',
-//   headers: {
-//   'X-Id-Token': 'abc123abc123',
-//   'Content-Type': 'application/json'
-//   }
-//   })
+export function fetchCategories() {
+  return axios.get("http://localhost:3000/categories");
+}

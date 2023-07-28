@@ -17,8 +17,12 @@ import {
 import { Link } from "react-router-dom";
 import {
   fetchAllProductAsync,
+  fetchBrandsAsync,
+  fetchCategoriesAsync,
   fetchProductByFitlerAsync,
   selectAllProducts,
+  selectBrands,
+  selectCategories,
   selectTotalItems,
 } from "./productSlice";
 import { ITEMS_PER_PAGE } from "../../app/constants";
@@ -29,171 +33,6 @@ const sortOptions = [
   { name: "Price: High to Low", sort: "price", order: "desc", current: false },
 ];
 
-const filters = [
-  {
-    id: "category",
-    name: "Category",
-    options: [
-      { value: "smartphones", label: "smartphones", checked: false },
-      { value: "laptops", label: "laptops", checked: false },
-      { value: "fragrances", label: "fragrances", checked: false },
-      { value: "skincare", label: "skincare", checked: false },
-      { value: "groceries", label: "groceries", checked: false },
-      { value: "home-decoration", label: "home decoration", checked: false },
-      { value: "furniture", label: "furniture", checked: false },
-      { value: "tops", label: "tops", checked: false },
-      { value: "womens-dresses", label: "womens dresses", checked: false },
-      { value: "womens-shoes", label: "womens shoes", checked: false },
-      { value: "mens-shirts", label: "mens shirts", checked: false },
-      { value: "mens-shoes", label: "mens shoes", checked: false },
-      { value: "mens-watches", label: "mens watches", checked: false },
-      { value: "womens-watches", label: "womens watches", checked: false },
-      { value: "womens-bags", label: "womens bags", checked: false },
-      { value: "womens-jewellery", label: "womens jewellery", checked: false },
-      { value: "sunglasses", label: "sunglasses", checked: false },
-      { value: "automotive", label: "automotive", checked: false },
-      { value: "motorcycle", label: "motorcycle", checked: false },
-      { value: "lighting", label: "lighting", checked: false },
-    ],
-  },
-  {
-    id: "brand",
-    name: "Brands",
-    options: [
-      { value: "Apple", label: "Apple", checked: false },
-      { value: "Samsung", label: "Samsung", checked: false },
-      { value: "OPPO", label: "OPPO", checked: false },
-      { value: "Huawei", label: "Huawei", checked: false },
-      {
-        value: "Microsoft Surface",
-        label: "Microsoft Surface",
-        checked: false,
-      },
-      { value: "Infinix", label: "Infinix", checked: false },
-      { value: "HP Pavilion", label: "HP Pavilion", checked: false },
-      {
-        value: "Impression of Acqua Di Gio",
-        label: "Impression of Acqua Di Gio",
-        checked: false,
-      },
-      { value: "Royal_Mirage", label: "Royal_Mirage", checked: false },
-      {
-        value: "Fog Scent Xpressio",
-        label: "Fog Scent Xpressio",
-        checked: false,
-      },
-      { value: "Al Munakh", label: "Al Munakh", checked: false },
-      { value: "Lord - Al-Rehab", label: "Lord   Al Rehab", checked: false },
-      { value: "L'Oreal Paris", label: "L'Oreal Paris", checked: false },
-      { value: "Hemani Tea", label: "Hemani Tea", checked: false },
-      { value: "Dermive", label: "Dermive", checked: false },
-      { value: "ROREC White Rice", label: "ROREC White Rice", checked: false },
-      { value: "Fair & Clear", label: "Fair & Clear", checked: false },
-      { value: "Saaf & Khaas", label: "Saaf & Khaas", checked: false },
-      { value: "Bake Parlor Big", label: "Bake Parlor Big", checked: false },
-      {
-        value: "Baking Food Items",
-        label: "Baking Food Items",
-        checked: false,
-      },
-      { value: "fauji", label: "fauji", checked: false },
-      { value: "Dry Rose", label: "Dry Rose", checked: false },
-      { value: "Boho Decor", label: "Boho Decor", checked: false },
-      { value: "Flying Wooden", label: "Flying Wooden", checked: false },
-      { value: "LED Lights", label: "LED Lights", checked: false },
-      { value: "luxury palace", label: "luxury palace", checked: false },
-      { value: "Golden", label: "Golden", checked: false },
-      {
-        value: "Furniture Bed Set",
-        label: "Furniture Bed Set",
-        checked: false,
-      },
-      { value: "Ratttan Outdoor", label: "Ratttan Outdoor", checked: false },
-      { value: "Kitchen Shelf", label: "Kitchen Shelf", checked: false },
-      { value: "Multi Purpose", label: "Multi Purpose", checked: false },
-      { value: "AmnaMart", label: "AmnaMart", checked: false },
-      {
-        value: "Professional Wear",
-        label: "Professional Wear",
-        checked: false,
-      },
-      { value: "Soft Cotton", label: "Soft Cotton", checked: false },
-      { value: "Top Sweater", label: "Top Sweater", checked: false },
-      {
-        value: "RED MICKY MOUSE..",
-        label: "RED MICKY MOUSE..",
-        checked: false,
-      },
-      { value: "Digital Printed", label: "Digital Printed", checked: false },
-      { value: "Ghazi Fabric", label: "Ghazi Fabric", checked: false },
-      { value: "IELGY", label: "IELGY", checked: false },
-      { value: "IELGY fashion", label: "IELGY fashion", checked: false },
-      {
-        value: "Synthetic Leather",
-        label: "Synthetic Leather",
-        checked: false,
-      },
-      {
-        value: "Sandals Flip Flops",
-        label: "Sandals Flip Flops",
-        checked: false,
-      },
-      { value: "Maasai Sandals", label: "Maasai Sandals", checked: false },
-      { value: "Arrivals Genuine", label: "Arrivals Genuine", checked: false },
-      { value: "Vintage Apparel", label: "Vintage Apparel", checked: false },
-      { value: "FREE FIRE", label: "FREE FIRE", checked: false },
-      { value: "The Warehouse", label: "The Warehouse", checked: false },
-      { value: "Sneakers", label: "Sneakers", checked: false },
-      { value: "Rubber", label: "Rubber", checked: false },
-      { value: "Naviforce", label: "Naviforce", checked: false },
-      { value: "SKMEI 9117", label: "SKMEI 9117", checked: false },
-      { value: "Strap Skeleton", label: "Strap Skeleton", checked: false },
-      { value: "Stainless", label: "Stainless", checked: false },
-      { value: "Eastern Watches", label: "Eastern Watches", checked: false },
-      { value: "Luxury Digital", label: "Luxury Digital", checked: false },
-      { value: "Watch Pearls", label: "Watch Pearls", checked: false },
-      { value: "Bracelet", label: "Bracelet", checked: false },
-      { value: "LouisWill", label: "LouisWill", checked: false },
-      { value: "Copenhagen Luxe", label: "Copenhagen Luxe", checked: false },
-      { value: "Steal Frame", label: "Steal Frame", checked: false },
-      { value: "Darojay", label: "Darojay", checked: false },
-      {
-        value: "Fashion Jewellery",
-        label: "Fashion Jewellery",
-        checked: false,
-      },
-      { value: "Cuff Butterfly", label: "Cuff Butterfly", checked: false },
-      {
-        value: "Designer Sun Glasses",
-        label: "Designer Sun Glasses",
-        checked: false,
-      },
-      { value: "mastar watch", label: "mastar watch", checked: false },
-      { value: "Car Aux", label: "Car Aux", checked: false },
-      { value: "W1209 DC12V", label: "W1209 DC12V", checked: false },
-      { value: "TC Reusable", label: "TC Reusable", checked: false },
-      { value: "Neon LED Light", label: "Neon LED Light", checked: false },
-      {
-        value: "METRO 70cc Motorcycle - MR70",
-        label: "METRO 70cc Motorcycle   MR70",
-        checked: false,
-      },
-      { value: "BRAVE BULL", label: "BRAVE BULL", checked: false },
-      { value: "shock absorber", label: "shock absorber", checked: false },
-      { value: "JIEPOLLY", label: "JIEPOLLY", checked: false },
-      { value: "Xiangle", label: "Xiangle", checked: false },
-      {
-        value: "lightingbrilliance",
-        label: "lightingbrilliance",
-        checked: false,
-      },
-      { value: "Ifei Home", label: "Ifei Home", checked: false },
-      { value: "DADAWU", label: "DADAWU", checked: false },
-      { value: "YIOSI", label: "YIOSI", checked: false },
-    ],
-  },
-];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -202,11 +41,27 @@ function ProductList() {
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts);
   const totalItems = useSelector(selectTotalItems);
+  const categories = useSelector(selectCategories);
+  const brands = useSelector(selectBrands);
+  console.log("categories", categories);
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState({});
   const [page, setPage] = useState(1);
+
+  const filters = [
+    {
+      id: "category",
+      name: "Category",
+      options: categories,
+    },
+    {
+      id: "brand",
+      name: "Brands",
+      options: brands,
+    },
+  ];
 
   const handleFilter = (e, section, option) => {
     const newFilter = { ...filter };
@@ -223,7 +78,6 @@ function ProductList() {
       );
       newFilter[section.id].splice(index, 1);
     }
-    console.log({ newFilter });
     setFilter(newFilter);
   };
 
@@ -234,13 +88,8 @@ function ProductList() {
   };
 
   const handlePage = (page) => {
-    // if (page > 0 && page < Math.ceil(totalItems / ITEMS_PER_PAGE) + 1) {
-    //   setPage(page);
-    // }
     setPage(page);
   };
-
-  console.log("page", page);
 
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
@@ -252,6 +101,11 @@ function ProductList() {
     setPage(1);
   }, [totalItems, sort]);
 
+  useEffect(() => {
+    dispatch(fetchCategoriesAsync());
+    dispatch(fetchBrandsAsync());
+  }, []);
+
   return (
     <div className="bg-white">
       <div>
@@ -259,6 +113,7 @@ function ProductList() {
           handleFilter={handleFilter}
           mobileFiltersOpen={mobileFiltersOpen}
           setMobileFiltersOpen={setMobileFiltersOpen}
+          filters={filters}
         />
         <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
@@ -336,7 +191,7 @@ function ProductList() {
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
               {/* Filters */}
-              <DesktopFilter handleFilter={handleFilter} />
+              <DesktopFilter handleFilter={handleFilter} filters={filters} />
 
               {/* Product grid */}
               <div className="lg:col-span-3">
@@ -368,6 +223,7 @@ function MobileFilter({
   handleFilter,
   mobileFiltersOpen,
   setMobileFiltersOpen,
+  filters,
 }) {
   return (
     <>
@@ -485,7 +341,7 @@ function MobileFilter({
   );
 }
 
-function DesktopFilter({ handleFilter }) {
+function DesktopFilter({ handleFilter, filters }) {
   return (
     <>
       <form className="hidden lg:block">
@@ -544,6 +400,7 @@ function DesktopFilter({ handleFilter }) {
 }
 
 function Pagination({ page, ITEMS_PER_PAGE, handlePage, setPage, totalItems }) {
+  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
   return (
     <>
       <div className="flex flex-1 justify-between sm:hidden">
@@ -555,7 +412,7 @@ function Pagination({ page, ITEMS_PER_PAGE, handlePage, setPage, totalItems }) {
           Previous
         </button>
         <button
-        disabled={page >=  Math.ceil(totalItems / ITEMS_PER_PAGE ) ? true : false}
+          disabled={page >= totalPages ? true : false}
           onClick={() => setPage(page + 1)}
           className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:bg-slate-200"
         >
@@ -593,25 +450,23 @@ function Pagination({ page, ITEMS_PER_PAGE, handlePage, setPage, totalItems }) {
             </button>
             {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
 
-            {Array.from({ length: Math.ceil(totalItems / ITEMS_PER_PAGE) }).map(
-              (el, index) => (
-                <button
-                  onClick={() => handlePage(index + 1)}
-                  aria-current="page"
-                  className={`relative z-10 inline-flex items-center px-4 py-2 text-sm font-semiboldfocus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 border cursor-pointer ${
-                    index + 1 === page
-                      ? "bg-indigo-600 text-white"
-                      : "text-gray-400"
-                  }`}
-                >
-                  {index + 1}
-                </button>
-              )
-            )}
+            {Array.from({ length: totalPages }).map((el, index) => (
+              <button
+                onClick={() => handlePage(index + 1)}
+                aria-current="page"
+                className={`relative z-10 inline-flex items-center px-4 py-2 text-sm font-semiboldfocus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 border cursor-pointer ${
+                  index + 1 === page
+                    ? "bg-indigo-600 text-white"
+                    : "text-gray-400"
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
 
             <button
               onClick={() => setPage(page + 1)}
-              disabled={page >=  Math.ceil(totalItems / ITEMS_PER_PAGE ) ? true : false}
+              disabled={page >= totalPages ? true : false}
               className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:bg-slate-200"
             >
               <span className="sr-only">Next</span>
