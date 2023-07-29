@@ -29,6 +29,10 @@ export function fetchProductsByFilters(filter, sort, pagination) {
   return axios.get(`http://localhost:3000/products?${queryString}`);
 }
 
+export function fetchProductById(id) {
+  return axios.get(`http://localhost:3000/products/${id}`);
+}
+
 export function fetchBrands() {
   return axios.get("http://localhost:3000/brands");
 }
