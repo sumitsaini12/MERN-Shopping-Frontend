@@ -24,8 +24,8 @@ import {
   selectBrands,
   selectCategories,
   selectTotalItems,
-} from "./productSlice";
-import { ITEMS_PER_PAGE } from "../../app/constants";
+} from "../productSlice";
+import { ITEMS_PER_PAGE } from "../../../app/constants";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
@@ -43,7 +43,6 @@ function ProductList() {
   const totalItems = useSelector(selectTotalItems);
   const categories = useSelector(selectCategories);
   const brands = useSelector(selectBrands);
-  console.log("categories", categories);
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [filter, setFilter] = useState({});
@@ -83,7 +82,6 @@ function ProductList() {
 
   const handleSort = (e, option) => {
     const newSort = { _sort: option.sort, _order: option.order };
-    console.log("sort", { sort });
     setSort(newSort);
   };
 
@@ -93,7 +91,6 @@ function ProductList() {
 
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
-    console.log("pagination", pagination);
     dispatch(fetchProductByFitlerAsync({ filter, sort, pagination }));
   }, [dispatch, filter, sort, page]);
 

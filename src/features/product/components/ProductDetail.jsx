@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductByIdAsync, selectProductById } from "./productSlice";
+import { fetchProductByIdAsync, selectProductById } from "../productSlice";
 import { useParams } from "react-router-dom";
 
 const colors = [
@@ -45,9 +45,7 @@ function ProductDetail() {
   const params = useParams();
 
   const product = useSelector(selectProductById);
-  console.log(product);
   useEffect(() => {
-    console.log("params.id", params.id);
     dispatch(fetchProductByIdAsync(params.id));
   }, [dispatch, params.id]);
 
