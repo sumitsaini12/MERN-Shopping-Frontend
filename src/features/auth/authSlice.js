@@ -19,7 +19,7 @@ export const checkUserAsync = createAsyncThunk(
   "user/checkUser",
   async (loginInfo) => {
     const response = await checkUser(loginInfo);
-    return response;
+    return response.data;
     // response.data
   }
 );

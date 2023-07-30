@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
@@ -7,8 +7,18 @@ import CartPage from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import Protected from "./features/auth/components/Protected";
+import { useDispatch, useSelector } from "react-redux";
+import { selectLoggedInUser } from "./features/auth/authSlice";
+import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
 
 function App() {
+  const user = useSelector(selectLoggedInUser);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchItemsByUserIdAsync(user.id));
+    }
+  }, [dispatch, user]);
   return (
     <>
       <Routes>

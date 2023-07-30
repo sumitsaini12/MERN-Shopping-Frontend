@@ -6,6 +6,8 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectItems } from "../cart/cartSlice";
 
 const user = {
   name: "Tom Cook",
@@ -28,6 +30,7 @@ function classNames(...classes) {
 }
 
 function NavBar({ children }) {
+  const addToCartItems = useSelector(selectItems);
   return (
     <>
       <div className="min-h-full">
@@ -69,7 +72,7 @@ function NavBar({ children }) {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      <Link to="/cart">
+                      <Link className="relative mx-4" to="/cart">
                         {" "}
                         <button
                           type="button"
@@ -81,10 +84,12 @@ function NavBar({ children }) {
                             aria-hidden="true"
                           />
                         </button>{" "}
-                      </Link>{" "}
-                      <span className="inline-flex items-center rounded-md mb-7 -ml-3 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-                        3
-                      </span>
+                        {addToCartItems.length > 0 && (
+                          <span className=" absolute -top-2 font-bold inline-flex items-center rounded-md mb-7 -ml-3 bg-red-50 px-2 py-1 text-xs  text-red-700 ring-1 ring-inset ring-red-600/10">
+                            {addToCartItems.length}
+                          </span>
+                        )}
+                      </Link>
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>
@@ -183,7 +188,7 @@ function NavBar({ children }) {
                         {user.email}
                       </div>
                     </div>
-                    <Link to="/cart">
+                    <Link className="relative" to="/cart">
                       {" "}
                       <button
                         type="button"
@@ -194,10 +199,12 @@ function NavBar({ children }) {
                           aria-hidden="true"
                         />
                       </button>{" "}
-                    </Link>{" "}
-                    <span className="inline-flex items-center rounded-md bg-red-50 mb-7 -ml-3 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-                      3
-                    </span>
+                      {addToCartItems.length > 0 && (
+                        <span className=" absolute bottom-4 items-center rounded-md bg-red-50 -ml-3  px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                          {addToCartItems.length}
+                        </span>
+                      )}{" "}
+                    </Link>
                   </div>
                   <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (
