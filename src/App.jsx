@@ -12,6 +12,7 @@ import { selectLoggedInUser } from "./features/auth/authSlice";
 import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
 import PageNotFound from "./pages/404";
 import OrderSuccessPage from "./pages/OrderSuccessPage";
+import UserOrders from "./features/user/components/UserOrders";
 
 function App() {
   const user = useSelector(selectLoggedInUser);
@@ -59,6 +60,7 @@ function App() {
           }
         />
         <Route path="order-success/:id" element={<OrderSuccessPage />} />
+        <Route path="orders" element={<UserOrders />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
