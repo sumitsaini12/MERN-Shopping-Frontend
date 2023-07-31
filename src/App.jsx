@@ -10,6 +10,7 @@ import Protected from "./features/auth/components/Protected";
 import { useDispatch, useSelector } from "react-redux";
 import { selectLoggedInUser } from "./features/auth/authSlice";
 import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
+import PageNotFound from "./pages/404";
 
 function App() {
   const user = useSelector(selectLoggedInUser);
@@ -56,6 +57,7 @@ function App() {
             </Protected>
           }
         />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );
