@@ -24,7 +24,7 @@ export const fetchItemsByUserIdAsync = createAsyncThunk(
   "cart/fetchItemsByUserId",
   async (userId) => {
     const response = await fetchItemsByUserId(userId);
-    console.log("user response", response)
+    console.log("user response", response);
     return response.data;
   }
 );
@@ -40,8 +40,8 @@ export const updataCartAsync = createAsyncThunk(
 export const deleteItemFromCartAsync = createAsyncThunk(
   "cart/deleteItemFromCart",
   async (itemId) => {
-    const response = await deleteItemFromCart(itemId);
-    return response.data;
+    await deleteItemFromCart(itemId);
+    return itemId;
   }
 );
 
@@ -49,10 +49,10 @@ export const resetCartAsync = createAsyncThunk(
   "cart/resetCart",
   async (userId) => {
     const response = await resetCart(userId);
+    console.log("response delete", response);
     return response.data;
   }
 );
-
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -87,7 +87,7 @@ export const cartSlice = createSlice({
       })
       .addCase(deleteItemFromCartAsync.fulfilled, (state, action) => {
         state.status = "idld";
-        const Index = state.items.findIndex((p) => p.id === action.payload.id);
+        const Index = state.items.findIndex((p) => p.id === action.payload);
         state.items.splice(Index, 1);
       })
       .addCase(resetCartAsync.pending, (state) => {
@@ -95,7 +95,7 @@ export const cartSlice = createSlice({
       })
       .addCase(resetCartAsync.fulfilled, (state, action) => {
         state.status = "idld";
-        state.items = []
+        state.items = [];
       });
   },
 });
