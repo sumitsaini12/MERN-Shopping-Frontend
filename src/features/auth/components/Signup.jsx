@@ -10,8 +10,13 @@ export default function Signup() {
   const user = useSelector(selectLoggedInUser);
   const SignUpUser = (values) => {
     dispatch(
-      createUserAsync({ email: values.email, password: values.password })
+      createUserAsync({
+        email: values.email,
+        password: values.password,
+        addresses: [],
+      })
     );
+    handleReset();
   };
 
   const schema = Yup.object({
@@ -22,7 +27,7 @@ export default function Signup() {
       .required(),
   });
 
-  const { values, handleChange, handleSubmit, handleBlur, errors, touched } =
+  const { values, handleChange, handleSubmit, handleBlur, errors, touched, handleReset } =
     useFormik({
       initialValues: {
         email: "",

@@ -9,7 +9,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
   const user = useSelector(selectLoggedInUser);
-  
+
   const LogInUser = (values) => {
     console.log("submit Data", {
       email: values.email,
@@ -18,6 +18,7 @@ export default function Login() {
     dispatch(
       checkUserAsync({ email: values.email, password: values.password })
     );
+    handleReset();
   };
 
   const schema = Yup.object({
@@ -25,15 +26,22 @@ export default function Login() {
     password: Yup.string().min(6).max(16).required(),
   });
 
-  const { values, handleChange, handleSubmit, handleBlur, errors, touched } =
-    useFormik({
-      initialValues: {
-        email: "",
-        password: "",
-      },
-      onSubmit: LogInUser,
-      validationSchema: schema,
-    });
+  const {
+    values,
+    handleChange,
+    handleSubmit,
+    handleBlur,
+    errors,
+    touched,
+    handleReset,
+  } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: LogInUser,
+    validationSchema: schema,
+  });
 
   return (
     <>
@@ -54,12 +62,7 @@ export default function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6"
-            action="#"
-            method="POST"
-          >
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label
                 htmlFor="email"
