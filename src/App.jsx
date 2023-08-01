@@ -15,6 +15,7 @@ import OrderSuccessPage from "./pages/OrderSuccessPage";
 import UserOrdersPage from "./pages/UserOrdersPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import { fetchLoggedInUserInfoAsync } from "./features/user/userSlice";
+import Logout from "./features/auth/components/logout";
 
 function App() {
   const user = useSelector(selectLoggedInUser);
@@ -38,6 +39,7 @@ function App() {
         />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/logout" element={<Logout />} />
         <Route
           path="/cart"
           element={
@@ -63,8 +65,8 @@ function App() {
           }
         />
         <Route path="order-success/:id" element={<OrderSuccessPage />} />
-        <Route path="orders" element={<UserOrdersPage />} />
-        <Route path="profile" element={<UserProfilePage />} />
+        <Route path="/orders" element={<UserOrdersPage />} />
+        <Route path="/profile" element={<UserProfilePage />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
