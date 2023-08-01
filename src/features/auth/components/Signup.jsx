@@ -1,11 +1,11 @@
+import React, {memo} from "react";
 import { useFormik } from "formik";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import * as Yup from "yup";
 import { createUserAsync, selectLoggedInUser } from "../authSlice";
 
-export default function Signup() {
+ function Signup() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
   const SignUpUser = (values) => {
@@ -153,3 +153,5 @@ export default function Signup() {
     </>
   );
 }
+
+export default memo(Signup)

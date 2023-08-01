@@ -16,6 +16,7 @@ import UserOrdersPage from "./pages/UserOrdersPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import { fetchLoggedInUserInfoAsync } from "./features/user/userSlice";
 import Logout from "./features/auth/components/logout";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
 function App() {
   const user = useSelector(selectLoggedInUser);
@@ -40,6 +41,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route
           path="/cart"
           element={
