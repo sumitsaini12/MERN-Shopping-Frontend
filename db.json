@@ -2340,8 +2340,8 @@
       "password": "123456",
       "addresses": [
         {
-          "firstName": "Sumit",
-          "lastName": "Saini",
+          "fullName": "Sumit Saini",
+          "email": "sumitsaini95488@gmail.com",
           "phone": 9548842182,
           "country": "INDIA",
           "street": "Rainta Bazpur US Nagar Uttarakhand India",
@@ -2350,14 +2350,14 @@
           "pinCode": "262401"
         },
         {
-          "firstName": "Sumit",
-          "lastName": "Kumar",
-          "phone": 9548842182,
-          "country": "Mexico",
-          "street": "house no. 86, P402, Vetican City  of Mexico",
-          "city": "Vetican",
-          "region": "Mexico",
-          "pinCode": "96832"
+          "fullName": "Akash",
+          "email": "akashsaini95488@gmail.com",
+          "phone": 8476009162,
+          "country": "INDIA",
+          "street": "Kaladhungi Nainital UK india",
+          "city": "Halwani",
+          "region": "UTTARAKHAND",
+          "pinCode": "263439"
         }
       ],
       "id": 1
@@ -2367,22 +2367,22 @@
       "password": "123654",
       "addresses": [
         {
-          "firstName": "Yogesh",
-          "lastName": "Singh",
-          "phone": 8476009162,
+          "fullName": "Vikas",
+          "email": "vikashsaini123@gmail.com",
+          "phone": 1236542185,
           "country": "INDIA",
-          "street": "chaklwa kaladhungi Nainital Uttarakhand ",
-          "city": "Kaladhungi",
+          "street": "Kaladhungi Nainital UK India",
+          "city": "Halwani",
           "region": "UTTARAKHAND",
-          "pinCode": "263402"
+          "pinCode": "263448"
         },
         {
-          "firstName": "Yogesh",
-          "lastName": "Saini",
-          "phone": 8476009162,
-          "country": "INDIA",
-          "street": "Rainta Bazpur US Nagar Uttarakhand",
-          "city": "Bazpur",
+          "fullName": "yogesh singh",
+          "email": "sdf@gamil.com",
+          "phone": 46513984621,
+          "country": "Canada",
+          "street": "afa daa fa ffdsasf as sa asf",
+          "city": "asfasf ",
           "region": "UTTARAKHAND",
           "pinCode": "262401"
         }
@@ -2392,21 +2392,85 @@
   ],
   "cart": [
     {
-      "title": "Samsung Universe 9",
-      "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
-      "price": 1249,
-      "discountPercentage": 15.46,
-      "rating": 4.09,
-      "stock": 36,
-      "brand": "Samsung",
+      "title": "iPhone X",
+      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price": 899,
+      "discountPercentage": 17.94,
+      "rating": 4.44,
+      "stock": 34,
+      "brand": "Apple",
       "category": "smartphones",
-      "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+      "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
       "images": [
-        "https://i.dummyjson.com/data/products/3/1.jpg"
+        "https://i.dummyjson.com/data/products/2/1.jpg",
+        "https://i.dummyjson.com/data/products/2/2.jpg",
+        "https://i.dummyjson.com/data/products/2/3.jpg",
+        "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+      ],
+      "quantity": "4",
+      "user": 2,
+      "id": 14
+    },
+    {
+      "title": "Microsoft Surface Laptop 4",
+      "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+      "price": 1499,
+      "discountPercentage": 10.23,
+      "rating": 4.43,
+      "stock": 68,
+      "brand": "Microsoft Surface",
+      "category": "laptops",
+      "thumbnail": "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/8/1.jpg",
+        "https://i.dummyjson.com/data/products/8/2.jpg",
+        "https://i.dummyjson.com/data/products/8/3.jpg",
+        "https://i.dummyjson.com/data/products/8/4.jpg",
+        "https://i.dummyjson.com/data/products/8/thumbnail.jpg"
       ],
       "quantity": 1,
       "user": 2,
-      "id": 9
+      "id": 15
+    },
+    {
+      "title": "iPhone X",
+      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price": 899,
+      "discountPercentage": 17.94,
+      "rating": 4.44,
+      "stock": 34,
+      "brand": "Apple",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/2/1.jpg",
+        "https://i.dummyjson.com/data/products/2/2.jpg",
+        "https://i.dummyjson.com/data/products/2/3.jpg",
+        "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "user": 2,
+      "id": 16
+    },
+    {
+      "title": "iPhone X",
+      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price": 899,
+      "discountPercentage": 17.94,
+      "rating": 4.44,
+      "stock": 34,
+      "brand": "Apple",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/2/1.jpg",
+        "https://i.dummyjson.com/data/products/2/2.jpg",
+        "https://i.dummyjson.com/data/products/2/3.jpg",
+        "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "user": 1,
+      "id": 17
     }
   ],
   "orders": [
@@ -2899,6 +2963,221 @@
       "paymentMethod": "cash",
       "status": "padding",
       "id": 6
+    },
+    {
+      "items": [
+        {
+          "title": "Stylish Luxury Digital Watch",
+          "description": "Stylish Luxury Digital Watch For Girls / Women - Led Smart Ladies Watches For Girls",
+          "price": 57,
+          "discountPercentage": 9.03,
+          "rating": 4.55,
+          "stock": 77,
+          "brand": "Luxury Digital",
+          "category": "womens-watches",
+          "thumbnail": "https://i.dummyjson.com/data/products/68/thumbnail.webp",
+          "images": [
+            "https://i.dummyjson.com/data/products/68/1.jpg",
+            "https://i.dummyjson.com/data/products/68/2.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 17
+        },
+        {
+          "title": "Stylish Luxury Digital Watch",
+          "description": "Stylish Luxury Digital Watch For Girls / Women - Led Smart Ladies Watches For Girls",
+          "price": 57,
+          "discountPercentage": 9.03,
+          "rating": 4.55,
+          "stock": 77,
+          "brand": "Luxury Digital",
+          "category": "womens-watches",
+          "thumbnail": "https://i.dummyjson.com/data/products/68/thumbnail.webp",
+          "images": [
+            "https://i.dummyjson.com/data/products/68/1.jpg",
+            "https://i.dummyjson.com/data/products/68/2.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 18
+        }
+      ],
+      "totalAmount": 114,
+      "totalItems": 2,
+      "user": {
+        "email": "sumitsaini95488@gmail.com",
+        "password": "123456",
+        "addresses": [
+          {
+            "fullName": "Sumit Saini",
+            "email": "sumitsaini95488@gmail.com",
+            "phone": 9548842182,
+            "country": "INDIA",
+            "street": "Rainta Bazpur US Nagar Uttarakhand India",
+            "city": "Bazpur",
+            "region": "UTTARAKHAND",
+            "pinCode": "262401"
+          }
+        ],
+        "id": 1
+      },
+      "selectedAddress": {
+        "fullName": "Sumit Saini",
+        "email": "sumitsaini95488@gmail.com",
+        "phone": 9548842182,
+        "country": "INDIA",
+        "street": "Rainta Bazpur US Nagar Uttarakhand India",
+        "city": "Bazpur",
+        "region": "UTTARAKHAND",
+        "pinCode": "262401"
+      },
+      "paymentMethod": "cash",
+      "status": "padding",
+      "id": 7
+    },
+    {
+      "items": [
+        {
+          "title": "Samsung Universe 9",
+          "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+          "price": 1249,
+          "discountPercentage": 15.46,
+          "rating": 4.09,
+          "stock": 36,
+          "brand": "Samsung",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/3/1.jpg"
+          ],
+          "quantity": "2",
+          "user": 2,
+          "id": 9
+        },
+        {
+          "title": "Huawei P30",
+          "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+          "price": 499,
+          "discountPercentage": 10.58,
+          "rating": 4.09,
+          "stock": 32,
+          "brand": "Huawei",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/5/1.jpg",
+            "https://i.dummyjson.com/data/products/5/2.jpg",
+            "https://i.dummyjson.com/data/products/5/3.jpg"
+          ],
+          "quantity": "3",
+          "user": 2,
+          "id": 13
+        },
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": "4",
+          "user": 2,
+          "id": 14
+        },
+        {
+          "title": "Microsoft Surface Laptop 4",
+          "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+          "price": 1499,
+          "discountPercentage": 10.23,
+          "rating": 4.43,
+          "stock": 68,
+          "brand": "Microsoft Surface",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/8/1.jpg",
+            "https://i.dummyjson.com/data/products/8/2.jpg",
+            "https://i.dummyjson.com/data/products/8/3.jpg",
+            "https://i.dummyjson.com/data/products/8/4.jpg",
+            "https://i.dummyjson.com/data/products/8/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 2,
+          "id": 15
+        },
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 2,
+          "id": 16
+        }
+      ],
+      "totalAmount": 9989,
+      "totalItems": 11,
+      "user": {
+        "email": "yogeshsaini95885@gmail.com",
+        "password": "123654",
+        "addresses": [
+          {
+            "fullName": "yogesh singh",
+            "email": "yogeshsaini95885@gmail.com",
+            "phone": 8476009162,
+            "country": "INDIA",
+            "street": "Rainta  Bazpur US Nagar UK India",
+            "city": "Bazpur",
+            "region": "UTTARAKHAND",
+            "pinCode": "262401"
+          },
+          {
+            "fullName": "Vikas",
+            "email": "vikaskumar123@gmail.com",
+            "phone": 1236542185,
+            "country": "Mexico",
+            "street": "Kahadhungi Nainital UK India",
+            "city": "halwani",
+            "region": "UTTARAKHAND",
+            "pinCode": "263440"
+          }
+        ],
+        "id": 2
+      },
+      "selectedAddress": {
+        "fullName": "Vikas",
+        "email": "vikaskumar123@gmail.com",
+        "phone": 1236542185,
+        "country": "Mexico",
+        "street": "Kahadhungi Nainital UK India",
+        "city": "halwani",
+        "region": "UTTARAKHAND",
+        "pinCode": "263440"
+      },
+      "paymentMethod": "cash",
+      "status": "padding",
+      "id": 8
     }
   ]
 }

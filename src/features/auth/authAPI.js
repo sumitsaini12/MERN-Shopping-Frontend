@@ -28,7 +28,3 @@ export function checkUser(loginInfo) {
     }
   });
 }
-
-export function updateUser(update) {
-  return axios.patch(`http://localhost:3000/users/${update.id}`, update);
-}

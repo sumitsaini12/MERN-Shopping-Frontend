@@ -1,5 +1,4 @@
 import { Navigate, Link } from "react-router-dom";
-import Cart from "../features/cart/Cart";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
@@ -8,19 +7,17 @@ import {
   selectItems,
   updataCartAsync,
 } from "../features/cart/cartSlice";
-import {
-  selectLoggedInUser,
-  updateUserAsync,
-} from "../features/auth/authSlice";
 import { useState } from "react";
 import {
   createOrderAsync,
   selectCurrentOrder,
 } from "../features/order/orderSlice";
+import { selectUserInfo, updateUserAsync } from "../features/user/userSlice";
 
 function Checkout() {
   const items = useSelector(selectItems);
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
+  console.log("user checkout page", user);
   const currentOrder = useSelector(selectCurrentOrder);
   const dispatch = useDispatch();
 
@@ -36,8 +33,8 @@ function Checkout() {
   };
 
   const schema = Yup.object({
-    firstName: Yup.string().required(),
-    lastName: Yup.string().required(),
+    fullName: Yup.string().required(),
+    email: Yup.string().email().required(),
     phone: Yup.number().required(),
     country: Yup.string().required(),
     street: Yup.string().required(),
@@ -56,8 +53,8 @@ function Checkout() {
     handleReset,
   } = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
+      fullName: "",
+      email: "",
       phone: "",
       country: "",
       street: "",
@@ -70,12 +67,10 @@ function Checkout() {
   });
 
   const handleAddress = (e) => {
-    console.log(user.addresses[e.target.value]);
     setSelectedAddress(user.addresses[e.target.value]);
   };
 
   const handlePayment = (e) => {
-    console.log(e.target.value);
     setPaymentMethod(e.target.value);
   };
 
@@ -142,51 +137,49 @@ function Checkout() {
                   <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div className="sm:col-span-3">
                       <label
-                        htmlFor="firstName"
+                        htmlFor="fullName"
                         className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        First name
+                        FullName
                       </label>
                       <div className="mt-2">
                         <input
                           type="text"
-                          name="firstName"
-                          id="firstName"
-                          value={values.firstName}
+                          name="fullName"
+                          id="fullName"
+                          value={values.fullName}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                       </div>
-                      {touched.firstName && errors.firstName && (
+                      {touched.fullName && errors.fullName && (
                         <p className="text-red-500 text-sm">
-                          {errors.firstName}
+                          {errors.fullName}
                         </p>
                       )}
                     </div>
 
                     <div className="sm:col-span-3">
                       <label
-                        htmlFor="lastName"
+                        htmlFor="email"
                         className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        Last name
+                        email
                       </label>
                       <div className="mt-2">
                         <input
                           type="text"
-                          id="lastName"
-                          name="lastName"
-                          value={values.lastName}
+                          name="email"
+                          id="email"
+                          value={values.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                       </div>
-                      {touched.lastName && errors.lastName && (
-                        <p className="text-red-500 text-sm">
-                          {errors.lastName}
-                        </p>
+                      {touched.email && errors.email && (
+                        <p className="text-red-500 text-sm">{errors.email}</p>
                       )}
                     </div>
 

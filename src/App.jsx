@@ -13,6 +13,8 @@ import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
 import PageNotFound from "./pages/404";
 import OrderSuccessPage from "./pages/OrderSuccessPage";
 import UserOrdersPage from "./pages/UserOrdersPage";
+import UserProfilePage from "./pages/UserProfilePage";
+import { fetchLoggedInUserInfoAsync } from "./features/user/userSlice";
 
 function App() {
   const user = useSelector(selectLoggedInUser);
@@ -20,6 +22,7 @@ function App() {
   useEffect(() => {
     if (user) {
       dispatch(fetchItemsByUserIdAsync(user.id));
+      dispatch(fetchLoggedInUserInfoAsync(user.id));
     }
   }, [dispatch, user]);
   return (
@@ -61,6 +64,7 @@ function App() {
         />
         <Route path="order-success/:id" element={<OrderSuccessPage />} />
         <Route path="orders" element={<UserOrdersPage />} />
+        <Route path="profile" element={<UserProfilePage />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
