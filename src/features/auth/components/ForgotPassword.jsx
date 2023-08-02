@@ -6,14 +6,11 @@ import * as Yup from "yup";
 
 function ForgotPassword() {
   const dispatch = useDispatch();
- 
 
   const handleForgotPassword = (values) => {
-//TODO : implementation on backend with email
-
+    //TODO : implementation on backend with email
     console.log("submit Data", {
       email: values.email,
-     
     });
   };
 
@@ -21,21 +18,14 @@ function ForgotPassword() {
     email: Yup.string().email().required(),
   });
 
-  const {
-    values,
-    handleChange,
-    handleSubmit,
-    handleBlur,
-    errors,
-    touched,
-    handleReset,
-  } = useFormik({
-    initialValues: {
-      email: "",
-    },
-    onSubmit: LogInUser,
-    validationSchema: schema,
-  });
+  const { values, handleChange, handleSubmit, handleBlur, errors, touched } =
+    useFormik({
+      initialValues: {
+        email: "",
+      },
+      onSubmit: handleForgotPassword,
+      validationSchema: schema,
+    });
 
   return (
     <>

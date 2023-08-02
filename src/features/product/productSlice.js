@@ -5,6 +5,8 @@ import {
   fetchBrands,
   fetchCategories,
   fetchProductById,
+  createProduct,
+  updateProduct,
 } from "./productAPI";
 
 const initialState = {
@@ -57,10 +59,30 @@ export const fetchBrandsAsync = createAsyncThunk(
   }
 );
 
+export const createProductAsync = createAsyncThunk(
+  "products/createProduct",
+  async (product) => {
+    const response = await createProduct(product);
+    return response.data;
+  }
+);
+
+export const updataProductAsync = createAsyncThunk(
+  "products/updateProduct",
+  async (update) => {
+    const response = await updateProduct(update);
+    return response.data;
+  }
+);
+
 export const productSlice = createSlice({
   name: "product",
   initialState,
-  reducers: {},
+  reducers: {
+    clearSelectedProduct: (state) => {
+      state.selectedProduct = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllProductAsync.pending, (state) => {
@@ -102,11 +124,28 @@ export const productSlice = createSlice({
       .addCase(fetchProductByIdAsync.fulfilled, (state, action) => {
         state.status = "idld";
         state.selectedProduct = action.payload;
+      })
+      .addCase(createProductAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(createProductAsync.fulfilled, (state, action) => {
+        state.status = "idld";
+        state.products.push(action.payload);
+      })
+      .addCase(updataProductAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updataProductAsync.fulfilled, (state, action) => {
+        state.status = "idld";
+        const Index = state.products.findIndex(
+          (p) => p.id === action.payload.id
+        );
+        state.products[Index] = action.payload;
       });
   },
 });
 
-export const {} = productSlice.actions;
+export const { clearSelectedProduct } = productSlice.actions;
 
 //selector
 export const selectAllProducts = (state) => state.product.products;

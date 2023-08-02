@@ -17,6 +17,10 @@ import UserProfilePage from "./pages/UserProfilePage";
 import { fetchLoggedInUserInfoAsync } from "./features/user/userSlice";
 import Logout from "./features/auth/components/logout";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import AdminHome from "./pages/AdminHome";
+import AdminProductDetailPage from "./pages/AdminProductDetailPage";
+import ProtectedAdmin from "./features/auth/components/ProtectedAdmin";
+import AdminProductFormPage from "./pages/AdminProductFormPage";
 
 function App() {
   const user = useSelector(selectLoggedInUser);
@@ -36,6 +40,14 @@ function App() {
             <Protected>
               <Home />
             </Protected>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedAdmin>
+              <AdminHome />
+            </ProtectedAdmin>
           }
         />
         <Route path="/login" element={<LoginPage />} />
@@ -66,9 +78,34 @@ function App() {
             </Protected>
           }
         />
+        <Route
+          path="/admin/product-detail/:id"
+          element={
+            <ProtectedAdmin>
+              <AdminProductDetailPage />
+            </ProtectedAdmin>
+          }
+        />
+        <Route
+          path="/admin/product-form"
+          element={
+            <ProtectedAdmin>
+              <AdminProductFormPage />
+            </ProtectedAdmin>
+          }
+        />
+         <Route
+          path="/admin/product-form/edit/:id"
+          element={
+            <ProtectedAdmin>
+              <AdminProductFormPage />
+            </ProtectedAdmin>
+          }
+        />
         <Route path="order-success/:id" element={<OrderSuccessPage />} />
         <Route path="/orders" element={<UserOrdersPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
+
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>

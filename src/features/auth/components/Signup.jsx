@@ -14,6 +14,8 @@ import { createUserAsync, selectLoggedInUser } from "../authSlice";
         email: values.email,
         password: values.password,
         addresses: [],
+        role: "user"
+        //TODO :- this role can be directly given on backend
       })
     );
     handleReset();

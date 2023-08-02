@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import NavBar from "../features/navbar/Navbar";
+import NavBar from "../features/navbar/NavBar";
 import UserProfile from "../features/user/components/UserProfile";
 
 function UserProfilePage() {

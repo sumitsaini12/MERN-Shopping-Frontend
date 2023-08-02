@@ -9,6 +9,7 @@ export function fetchProductsByFilters(filter, sort, pagination) {
   // sort ={_sort:"price", _order="desc"}
   // Todo= Server support multiple categories
   // pagination = { _page:1, _limi=10}  // _page=1&_limit=10
+  // TODO :  Server will filter deleted products in case of non-admin
 
   let queryString = "";
   for (let key in filter) {
@@ -39,4 +40,14 @@ export function fetchBrands() {
 
 export function fetchCategories() {
   return axios.get("http://localhost:3000/categories");
+}
+
+
+//only Admin kai liye
+export function createProduct(product) {
+  return axios.post("http://localhost:3000/products", product)
+}
+
+export function updateProduct(update) {
+  return axios.patch(`http://localhost:3000/products/${update.id}`, update);
 }

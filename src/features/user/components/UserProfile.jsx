@@ -7,7 +7,6 @@ import * as Yup from "yup";
 function UserProfile() {
   const dispatch = useDispatch();
   const user = useSelector(selectUserInfo);
-  console.log("user date", user);
   const [selectedEditIndex, setSelectedEditIndex] = useState(-1);
   const [showAddAddressForm, setShowAddAddressForm] = useState(false);
 
@@ -101,8 +100,13 @@ function UserProfile() {
                     Name:- {user ? <span>Sumit Saini</span> : "New User"}
                   </h1>
                   <h3 className="text-xl my-5 font-bold tracking-tight text-red-900">
-                    {user.email}
+                    Email Address:- {user.email}
                   </h3>
+                  {user.role === "admin" && (
+                    <h3 className="text-xl my-5 font-bold tracking-tight text-red-900">
+                      Role:- {user.role}
+                    </h3>
+                  )}
                 </div>
                 <div>
                   <button
@@ -129,7 +133,8 @@ function UserProfile() {
                         Add New Address
                       </h2>
                       <p className="mt-1 text-sm leading-6 text-gray-600">
-                      Enter the value carefully with all the inputs given below.
+                        Enter the value carefully with all the inputs given
+                        below.
                       </p>
 
                       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -383,9 +388,9 @@ function UserProfile() {
                       <div className="space-y-12">
                         <div className="border-b border-gray-900/10 pb-12">
                           <h2 className="text-2xl font-semibold leading-7 text-gray-900">
-                           Edit Your Address
+                            Edit Your Address
                           </h2>
-                      
+
                           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div className="sm:col-span-3">
                               <label
