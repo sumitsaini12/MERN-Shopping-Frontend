@@ -17,13 +17,11 @@ import { useParams } from "react-router-dom";
 function ProductForm() {
   const dispatch = useDispatch();
   const params = useParams();
-  console.log("product id ", params.id);
 
   const categories = useSelector(selectCategories);
   const brands = useSelector(selectBrands);
   const selectedProduct = useSelector(selectProductById);
-  console.log("selectedProduct", selectedProduct);
-
+  
   useEffect(() => {
     if (params.id) {
       dispatch(fetchProductByIdAsync(params.id));

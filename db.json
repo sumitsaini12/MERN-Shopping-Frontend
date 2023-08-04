@@ -7,7 +7,7 @@
       "price": 554,
       "discountPercentage": 12.96,
       "rating": 0,
-      "stock": 94,
+      "stock": 0,
       "brand": "Apple",
       "category": "smartphones",
       "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
@@ -51,7 +51,8 @@
       "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
       "images": [
         "https://i.dummyjson.com/data/products/3/1.jpg"
-      ]
+      ],
+      "deleted": true
     },
     {
       "id": 4,
@@ -92,7 +93,7 @@
       "id": 6,
       "title": "MacBook Pro",
       "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
-      "price": 1749,
+      "price": 1799,
       "discountPercentage": 11.02,
       "rating": 4.57,
       "stock": 83,
@@ -2455,6 +2456,47 @@
       "quantity": 1,
       "user": 1,
       "id": 17
+    },
+    {
+      "title": "MacBook Pro",
+      "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
+      "price": 1799,
+      "discountPercentage": 11.02,
+      "rating": 4.57,
+      "stock": 83,
+      "brand": "Apple",
+      "category": "laptops",
+      "thumbnail": "https://i.dummyjson.com/data/products/6/thumbnail.png",
+      "images": [
+        "https://i.dummyjson.com/data/products/6/1.png",
+        "https://i.dummyjson.com/data/products/6/2.jpg",
+        "https://i.dummyjson.com/data/products/6/3.png",
+        "https://i.dummyjson.com/data/products/6/4.jpg"
+      ],
+      "quantity": "2",
+      "user": 3,
+      "id": 19
+    },
+    {
+      "title": "MacBook Pro",
+      "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
+      "price": 1799,
+      "discountPercentage": 11.02,
+      "rating": 4.57,
+      "stock": 83,
+      "brand": "Apple",
+      "category": "laptops",
+      "thumbnail": "https://i.dummyjson.com/data/products/6/thumbnail.png",
+      "images": [
+        "https://i.dummyjson.com/data/products/6/1.png",
+        "https://i.dummyjson.com/data/products/6/2.jpg",
+        "https://i.dummyjson.com/data/products/6/3.png",
+        "https://i.dummyjson.com/data/products/6/4.jpg"
+      ],
+      "productId": 6,
+      "quantity": "3",
+      "user": 2,
+      "id": 20
     }
   ],
   "orders": [
@@ -2549,13 +2591,13 @@
         "lastName": "Saini",
         "phone": 9548842182,
         "country": "INDIA",
-        "street": "Rainta Bazpur US Nagar Uttarakhand India",
+        "street": "Rainta",
         "city": "Bazpur",
         "region": "UTTARAKHAND",
         "pinCode": "262401"
       },
       "paymentMethod": "cash",
-      "status": "padding",
+      "status": "delivered",
       "id": 1
     },
     {
@@ -2613,7 +2655,7 @@
             "lastName": "Saini",
             "phone": 9548842182,
             "country": "INDIA",
-            "street": "Rainta Bazpur US Nagar Uttarakhand India",
+            "street": "Rainta",
             "city": "Bazpur",
             "region": "UTTARAKHAND",
             "pinCode": "262401"
@@ -2623,7 +2665,7 @@
             "lastName": "Kumar",
             "phone": 9548842182,
             "country": "Mexico",
-            "street": "house no. 86, P402, Vetican City  of Mexico",
+            "street": "house no. 86, P402,",
             "city": "Vetican",
             "region": "Mexico",
             "pinCode": "96832"
@@ -2636,13 +2678,13 @@
         "lastName": "Kumar",
         "phone": 9548842182,
         "country": "Mexico",
-        "street": "house no. 86, P402, Vetican City  of Mexico",
+        "street": "house no. 86, P402,",
         "city": "Vetican",
         "region": "Mexico",
         "pinCode": "96832"
       },
       "paymentMethod": "cash",
-      "status": "padding",
+      "status": "cancelled",
       "id": 2
     },
     {
@@ -2679,7 +2721,7 @@
             "lastName": "Singh",
             "phone": 8476009162,
             "country": "INDIA",
-            "street": "chaklwa kaladhungi Nainital Uttarakhand ",
+            "street": "chaklwa ",
             "city": "Kaladhungi",
             "region": "UTTARAKHAND",
             "pinCode": "263402"
@@ -2689,7 +2731,7 @@
             "lastName": "Saini",
             "phone": 8476009162,
             "country": "INDIA",
-            "street": "Rainta Bazpur US Nagar Uttarakhand",
+            "street": "Rainta ",
             "city": "Bazpur",
             "region": "UTTARAKHAND",
             "pinCode": "262401"
@@ -2702,13 +2744,13 @@
         "lastName": "Singh",
         "phone": 8476009162,
         "country": "INDIA",
-        "street": "chaklwa kaladhungi Nainital Uttarakhand ",
+        "street": "chaklwa  ",
         "city": "Kaladhungi",
         "region": "UTTARAKHAND",
         "pinCode": "263402"
       },
       "paymentMethod": "cash",
-      "status": "padding",
+      "status": "dispatched",
       "id": 3
     },
     {
@@ -2745,7 +2787,7 @@
             "lastName": "Singh",
             "phone": 8476009162,
             "country": "INDIA",
-            "street": "chaklwa kaladhungi Nainital Uttarakhand ",
+            "street": "chaklwa ",
             "city": "Kaladhungi",
             "region": "UTTARAKHAND",
             "pinCode": "263402"
@@ -2755,7 +2797,7 @@
             "lastName": "Saini",
             "phone": 8476009162,
             "country": "INDIA",
-            "street": "Rainta Bazpur US Nagar Uttarakhand",
+            "street": "Rainta",
             "city": "Bazpur",
             "region": "UTTARAKHAND",
             "pinCode": "262401"
@@ -2768,13 +2810,13 @@
         "lastName": "Saini",
         "phone": 8476009162,
         "country": "INDIA",
-        "street": "Rainta Bazpur US Nagar Uttarakhand",
+        "street": "Rainta ",
         "city": "Bazpur",
         "region": "UTTARAKHAND",
         "pinCode": "262401"
       },
       "paymentMethod": "cash",
-      "status": "padding",
+      "status": "panding",
       "id": 4
     },
     {
@@ -2812,7 +2854,7 @@
             "lastName": "Singh",
             "phone": 8476009162,
             "country": "INDIA",
-            "street": "chaklwa kaladhungi Nainital Uttarakhand ",
+            "street": "chaklwa ",
             "city": "Kaladhungi",
             "region": "UTTARAKHAND",
             "pinCode": "263402"
@@ -2822,7 +2864,7 @@
             "lastName": "Saini",
             "phone": 8476009162,
             "country": "INDIA",
-            "street": "Rainta Bazpur US Nagar Uttarakhand",
+            "street": "Rainta",
             "city": "Bazpur",
             "region": "UTTARAKHAND",
             "pinCode": "262401"
@@ -2835,13 +2877,13 @@
         "lastName": "Saini",
         "phone": 8476009162,
         "country": "INDIA",
-        "street": "Rainta Bazpur US Nagar Uttarakhand",
+        "street": "Rainta ",
         "city": "Bazpur",
         "region": "UTTARAKHAND",
         "pinCode": "262401"
       },
       "paymentMethod": "cash",
-      "status": "padding",
+      "status": "delivered",
       "id": 5
     },
     {
@@ -2916,7 +2958,7 @@
             "lastName": "Singh",
             "phone": 8476009162,
             "country": "INDIA",
-            "street": "chaklwa kaladhungi Nainital Uttarakhand ",
+            "street": "chaklwa  ",
             "city": "Kaladhungi",
             "region": "UTTARAKHAND",
             "pinCode": "263402"
@@ -2926,7 +2968,7 @@
             "lastName": "Saini",
             "phone": 8476009162,
             "country": "INDIA",
-            "street": "Rainta Bazpur US Nagar Uttarakhand",
+            "street": "Rainta ",
             "city": "Bazpur",
             "region": "UTTARAKHAND",
             "pinCode": "262401"
@@ -2939,13 +2981,13 @@
         "lastName": "Singh",
         "phone": 8476009162,
         "country": "INDIA",
-        "street": "chaklwa kaladhungi Nainital Uttarakhand ",
+        "street": "chaklwa  ",
         "city": "Kaladhungi",
         "region": "UTTARAKHAND",
         "pinCode": "263402"
       },
       "paymentMethod": "cash",
-      "status": "padding",
+      "status": "cancelled",
       "id": 6
     },
     {
@@ -2998,7 +3040,7 @@
             "email": "sumitsaini95488@gmail.com",
             "phone": 9548842182,
             "country": "INDIA",
-            "street": "Rainta Bazpur US Nagar Uttarakhand India",
+            "street": "Rainta",
             "city": "Bazpur",
             "region": "UTTARAKHAND",
             "pinCode": "262401"
@@ -3011,7 +3053,7 @@
         "email": "sumitsaini95488@gmail.com",
         "phone": 9548842182,
         "country": "INDIA",
-        "street": "Rainta Bazpur US Nagar Uttarakhand India",
+        "street": "Rainta ",
         "city": "Bazpur",
         "region": "UTTARAKHAND",
         "pinCode": "262401"
@@ -3131,7 +3173,7 @@
             "email": "yogeshsaini95885@gmail.com",
             "phone": 8476009162,
             "country": "INDIA",
-            "street": "Rainta  Bazpur US Nagar UK India",
+            "street": "Rainta ",
             "city": "Bazpur",
             "region": "UTTARAKHAND",
             "pinCode": "262401"
@@ -3141,7 +3183,7 @@
             "email": "vikaskumar123@gmail.com",
             "phone": 1236542185,
             "country": "Mexico",
-            "street": "Kahadhungi Nainital UK India",
+            "street": "Kahadhungi ",
             "city": "halwani",
             "region": "UTTARAKHAND",
             "pinCode": "263440"
@@ -3154,13 +3196,13 @@
         "email": "vikaskumar123@gmail.com",
         "phone": 1236542185,
         "country": "Mexico",
-        "street": "Kahadhungi Nainital UK India",
+        "street": "Kahadhungi ",
         "city": "halwani",
         "region": "UTTARAKHAND",
         "pinCode": "263440"
       },
       "paymentMethod": "cash",
-      "status": "padding",
+      "status": "dispatched",
       "id": 8
     },
     {
@@ -3258,7 +3300,7 @@
             "email": "vikashsaini123@gmail.com",
             "phone": 1236542185,
             "country": "INDIA",
-            "street": "Kaladhungi Nainital UK India",
+            "street": "Kaladhungi ",
             "city": "Halwani",
             "region": "UTTARAKHAND",
             "pinCode": "263448"
@@ -3268,7 +3310,7 @@
             "email": "sdf@gamil.com",
             "phone": 46513984621,
             "country": "Canada",
-            "street": "afa daa fa ffdsasf as sa asf",
+            "street": "afa f",
             "city": "asfasf ",
             "region": "UTTARAKHAND",
             "pinCode": "262401"
@@ -3281,7 +3323,7 @@
         "email": "vikashsaini123@gmail.com",
         "phone": 1236542185,
         "country": "INDIA",
-        "street": "Kaladhungi Nainital UK India",
+        "street": "Kaladhungi",
         "city": "Halwani",
         "region": "UTTARAKHAND",
         "pinCode": "263448"
@@ -3345,7 +3387,7 @@
             "email": "vikashsaini123@gmail.com",
             "phone": 1236542185,
             "country": "INDIA",
-            "street": "Kaladhungi Nainital UK India",
+            "street": "Kaladhungi ",
             "city": "Halwani",
             "region": "UTTARAKHAND",
             "pinCode": "263448"
@@ -3355,7 +3397,7 @@
             "email": "sdf@gamil.com",
             "phone": 46513984621,
             "country": "Canada",
-            "street": "afa daa fa ffdsasf as sa asf",
+            "street": "afa f",
             "city": "asfasf ",
             "region": "UTTARAKHAND",
             "pinCode": "262401"
@@ -3368,7 +3410,7 @@
         "email": "vikashsaini123@gmail.com",
         "phone": 1236542185,
         "country": "INDIA",
-        "street": "Kaladhungi Nainital UK India",
+        "street": "Kaladhungi",
         "city": "Halwani",
         "region": "UTTARAKHAND",
         "pinCode": "263448"
@@ -3427,7 +3469,7 @@
             "email": "vikashsaini123@gmail.com",
             "phone": 1236542185,
             "country": "INDIA",
-            "street": "Kaladhungi Nainital UK India",
+            "street": "Kaladhungi ",
             "city": "Halwani",
             "region": "UTTARAKHAND",
             "pinCode": "263448"
@@ -3437,7 +3479,7 @@
             "email": "sdf@gamil.com",
             "phone": 46513984621,
             "country": "Canada",
-            "street": "afa daa fa ffdsasf as sa asf",
+            "street": "afa ",
             "city": "asfasf ",
             "region": "UTTARAKHAND",
             "pinCode": "262401"
@@ -3450,7 +3492,7 @@
         "email": "vikashsaini123@gmail.com",
         "phone": 1236542185,
         "country": "INDIA",
-        "street": "Kaladhungi Nainital UK India",
+        "street": "Kaladhungi",
         "city": "Halwani",
         "region": "UTTARAKHAND",
         "pinCode": "263448"

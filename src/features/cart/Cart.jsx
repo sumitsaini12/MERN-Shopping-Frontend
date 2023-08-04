@@ -8,6 +8,7 @@ import {
   selectItems,
   updataCartAsync,
 } from "./cartSlice";
+import { discountedPrice } from "../../app/constants";
 
 function Cart() {
   const [open, setOpen] = useState(true);
@@ -15,7 +16,7 @@ function Cart() {
   const dispatch = useDispatch();
 
   const totalAmount = products.reduce((amount, item) => {
-    return item.price * item.quantity + amount;
+    return discountedPrice(item) * item.quantity + amount;
   }, 0);
 
   const totalItems = products.reduce((total, item) => {
@@ -53,7 +54,7 @@ function Cart() {
                       <div>
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <h3>{item.title}</h3>
-                          <p className="ml-4"> ${item.price}</p>
+                          <p className="ml-4"> ${discountedPrice(item)}</p>
                         </div>
                         <p className="mt-1 text-sm text-gray-500">
                           {item.brand}
