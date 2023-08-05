@@ -3,12 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserInfo, updateUserAsync } from "../userSlice";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Model from "../../commen/Model";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function UserProfile() {
   const dispatch = useDispatch();
   const user = useSelector(selectUserInfo);
   const [selectedEditIndex, setSelectedEditIndex] = useState(-1);
   const [showAddAddressForm, setShowAddAddressForm] = useState(false);
+  const [openModel, setOpenModel] = useState(-1);
 
   const handleShowForm = (e, index) => {
     setSelectedEditIndex(index);
@@ -27,6 +31,9 @@ function UserProfile() {
     const newUser = { ...user, addresses: [...user.addresses] }; // for shallow copy issue
     newUser.addresses.splice(index, 1);
     dispatch(updateUserAsync(newUser));
+    toast.info("User Address delete successfully", {
+      position: "top-center",
+    });
   };
 
   const EditAddress = (values) => {
@@ -35,6 +42,10 @@ function UserProfile() {
     dispatch(updateUserAsync(newUser));
     setSelectedEditIndex(-1);
     handleReset();
+    // alert("your address Edit SuccessFully");
+    toast.success("your address Edit SuccessFully", {
+      position: "top-center",
+    });
   };
 
   const addNewAddress = (values) => {
@@ -42,6 +53,10 @@ function UserProfile() {
     dispatch(updateUserAsync(newUser));
     setShowAddAddressForm(false);
     handleReset();
+     //alert("new user address add successfully");
+     toast.success("New Address Add Successfully", {
+      position: "top-center",
+    });
   };
 
   // handle to form Edit and Add
@@ -659,9 +674,18 @@ function UserProfile() {
                       >
                         Edit
                       </button>
+                      <Model
+                        title={`Delete ${address.name} address`}
+                        message={`Are you sure you want to delete this ${address.name} address ?`}
+                        dangerOption="Delete"
+                        cancelOption="Cancel"
+                        dangerAction={(e) => handleRemove(e, index)}
+                        cancelAction={() => setOpenModel(-1)}
+                        showModel={openModel === index}
+                      />
                       <button
                         type="button"
-                        onClick={(e) => handleRemove(e, index)}
+                        onClick={() => setOpenModel(index)}
                         className="font-medium text-indigo-600 hover:text-indigo-500"
                       >
                         Remove
@@ -674,6 +698,7 @@ function UserProfile() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

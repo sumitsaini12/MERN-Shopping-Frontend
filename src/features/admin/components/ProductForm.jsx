@@ -1,5 +1,4 @@
-import React, { memo, useEffect } from "react";
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import React, { memo, useEffect, useState } from "react";
 import {
   clearSelectedProduct,
   createProductAsync,
@@ -13,6 +12,9 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { useParams } from "react-router-dom";
+import Model from "../../commen/Model";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ProductForm() {
   const dispatch = useDispatch();
@@ -21,7 +23,8 @@ function ProductForm() {
   const categories = useSelector(selectCategories);
   const brands = useSelector(selectBrands);
   const selectedProduct = useSelector(selectProductById);
-  
+  const [openModel, setOpenModel] = useState(null);
+
   useEffect(() => {
     if (params.id) {
       dispatch(fetchProductByIdAsync(params.id));
@@ -64,8 +67,14 @@ function ProductForm() {
       product.id = params.id;
       product.rating = selectedProduct.rating || 0;
       dispatch(updataProductAsync(product));
+      toast.success("Product Update Successfully!", {
+        position: "top-center",
+      });
     } else {
       dispatch(createProductAsync(product));
+      toast.success("Create New Product Successfully", {
+        position: "top-center",
+      });
     }
     handleReset();
   };
@@ -117,6 +126,9 @@ function ProductForm() {
     const product = { ...selectedProduct };
     product.deleted = true;
     dispatch(updataProductAsync(product));
+    toast.success("Delete Product Successfully!", {
+      position: "top-center",
+    });
     handleReset();
   };
 
@@ -132,6 +144,11 @@ function ProductForm() {
 
           <div className="border-b border-gray-900/10 pb-12">
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              {selectedProduct && selectedProduct.deleted && (
+                <h2 className="text-red-500 sm:col-span-6">
+                  This Product is deleted
+                </h2>
+              )}
               <div className="sm:col-span-6">
                 <label
                   htmlFor="title"
@@ -514,10 +531,13 @@ function ProductForm() {
           >
             Reset
           </button>
-          {selectedProduct && (
+
+          {selectedProduct && selectedProduct && !selectedProduct.deleted && (
             <button
               type="button"
-              onClick={handleDelete}
+              onClick={(e) => {
+                e.preventDefault(), setOpenModel(true);
+              }}
               className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
             >
               Delete
@@ -531,6 +551,18 @@ function ProductForm() {
           </button>
         </div>
       </form>
+      {selectedProduct && (
+        <Model
+          title={`Delete ${selectedProduct.title}`}
+          message={`Are you sure you want to delete this Product ?`}
+          dangerOption="Delete"
+          cancelOption="Cancel"
+          dangerAction={handleDelete}
+          cancelAction={() => setOpenModel(null)}
+          showModel={openModel}
+        />
+      )}
+      <ToastContainer />
     </>
   );
 }

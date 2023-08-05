@@ -7,6 +7,9 @@ import { useParams } from "react-router-dom";
 import { addToCartAsync, selectItems } from "../../cart/cartSlice";
 import { selectLoggedInUser } from "../../auth/authSlice";
 import { discountedPrice } from "../../../app/constants";
+// import { useAlert } from "react-alert";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const colors = [
   { title: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -42,6 +45,7 @@ function classNames(...classes) {
 
 function ProductDetail() {
   const params = useParams();
+  // const alert = useAlert();
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
 
@@ -65,8 +69,14 @@ function ProductDetail() {
       };
       delete newItem["id"];
       dispatch(addToCartAsync(newItem));
+      //TODO: it will be based on server serponse of backend
+      toast.success("Product added to Cart!", {
+        position: "top-center",
+      });
     } else {
-      alert("product already added");
+      toast.warn("Product already added!", {
+        position: "top-center",
+      });
     }
   };
 
@@ -362,6 +372,7 @@ function ProductDetail() {
           {/* last */}
         </div>
       ) : null}
+      <ToastContainer />
     </div>
   );
 }

@@ -1,9 +1,12 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { checkUserAsync, selectError, selectLoggedInUser } from "../authSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function Login() {
   const dispatch = useDispatch();
@@ -43,6 +46,14 @@ function Login() {
     validationSchema: schema,
   });
 
+  useEffect(() => {
+    if (error) {
+      toast.error(error.message, {
+        position: "top-center",
+      });
+    }
+  }, [error]);
+
   return (
     <>
       {user && <Navigate to="/" replace={true}></Navigate>}
@@ -50,15 +61,12 @@ function Login() {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            src="/e-commerce.png"
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Log in to your account
           </h2>
-          {error && (
-            <p className="text-red-500 text-center mt-4">{error.message}</p>
-          )}
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -140,6 +148,7 @@ function Login() {
           </p>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

@@ -14,6 +14,8 @@ import {
   ArrowDownIcon,
 } from "@heroicons/react/24/outline";
 import Pagination from "../../commen/Pagination";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AdminOrder() {
   const dispatch = useDispatch();
@@ -51,6 +53,9 @@ function AdminOrder() {
     const updatedOrder = { ...order, status: e.target.value };
     dispatch(updateOrderAsync(updatedOrder));
     setEditableOrderId(-1);
+    toast.success("Delivary Status Successfully Update!", {
+      position: "top-center",
+    });
   };
 
   const chooseColor = (status) => {
@@ -87,7 +92,7 @@ function AdminOrder() {
                         })
                       }
                     >
-                      #Order {" "}
+                      #Order{" "}
                       {sort._sort === "id" &&
                         (sort._order === "asc" ? (
                           <ArrowUpIcon className="w-4 h-4 font-semibold" />
@@ -105,7 +110,7 @@ function AdminOrder() {
                         })
                       }
                     >
-                      #Total Amount {" "}
+                      #Total Amount{" "}
                       {sort._sort === "totalAmount" &&
                         (sort._order === "asc" ? (
                           <ArrowUpIcon className="w-4 h-4 font-semibold" />
@@ -225,6 +230,7 @@ function AdminOrder() {
           totalItems={totalOrders}
         />
       </div>
+      <ToastContainer />
     </>
   );
 }

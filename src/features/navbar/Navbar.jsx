@@ -11,10 +11,9 @@ import { selectItems } from "../cart/cartSlice";
 import { selectLoggedInUser } from "../auth/authSlice";
 
 const userProfile = {
-  name: "Tom Cook",
-  email: "tom@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+  name: "Sumit kumar",
+  email: "sumitsaini95488@gmail.com",
+  imageUrl: "/avatar.png",
 };
 const navigation = [
   { name: "Products", link: "/", user: true },
@@ -47,8 +46,8 @@ function NavBar({ children }) {
                       <Link to="/">
                         {" "}
                         <img
-                          className="h-8 w-8"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                          className="h-10 w-10"
+                          src="/e-commerce.png"
                           alt="Your Company"
                         />
                       </Link>
@@ -237,7 +236,7 @@ function NavBar({ children }) {
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-              E-Commerce
+              E-Shopping
             </h1>
           </div>
         </header>

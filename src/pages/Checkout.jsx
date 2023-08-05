@@ -14,6 +14,9 @@ import {
 } from "../features/order/orderSlice";
 import { selectUserInfo, updateUserAsync } from "../features/user/userSlice";
 import { discountedPrice } from "../app/constants";
+import Model from "../features/commen/Model";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Checkout() {
   const items = useSelector(selectItems);
@@ -24,12 +27,16 @@ function Checkout() {
 
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("cash");
+  const [openModel, setOpenModel] = useState(-1);
 
   const UserImpformation = (values) => {
     console.log("submit Data", values);
     dispatch(
       updateUserAsync({ ...user, addresses: [...user.addresses, values] })
     );
+    toast.warn("Add New Address Successfully!", {
+      position: "top-center",
+    });
     handleReset();
   };
 
@@ -105,7 +112,9 @@ function Checkout() {
     if (selectedAddress) {
       dispatch(createOrderAsync(order));
     } else {
-      alert("please select Your current Addresss");
+      toast.warn("please select Your current Addresss!", {
+        position: "top-center",
+      });
     }
 
     //TODO: Redirect to order-success page
@@ -465,7 +474,10 @@ function Checkout() {
                             <div>
                               <div className="flex justify-between text-base font-medium text-gray-900">
                                 <h3>{item.title}</h3>
-                                <p className="ml-4"> ${discountedPrice(item)}</p>
+                                <p className="ml-4">
+                                  {" "}
+                                  ${discountedPrice(item)}
+                                </p>
                               </div>
                               <p className="mt-1 text-sm text-gray-500">
                                 {item.brand}
@@ -494,9 +506,18 @@ function Checkout() {
                               </div>
 
                               <div className="flex">
+                                <Model
+                                  title={`Delete ${item.title}`}
+                                  message={`Are you sure you want to delete this ${item.title} ?`}
+                                  dangerOption="Delete"
+                                  cancelOption="Cancel"
+                                  dangerAction={() => handleRemove(item.id)}
+                                  cancelAction={() => setOpenModel(-1)}
+                                  showModel={openModel === item.id}
+                                />
                                 <button
                                   type="button"
-                                  onClick={() => handleRemove(item.id)}
+                                  onClick={() => setOpenModel(item.id)}
                                   className="font-medium text-indigo-600 hover:text-indigo-500"
                                 >
                                   Remove
@@ -556,6 +577,7 @@ function Checkout() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

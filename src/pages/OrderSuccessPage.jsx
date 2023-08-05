@@ -4,17 +4,23 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { resetCartAsync } from "../features/cart/cartSlice";
 import { selectLoggedInUser } from "../features/auth/authSlice";
 import { resetOrder } from "../features/order/orderSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function OrderSuccessPage() {
   const params = useParams();
   const dispatch = useDispatch();
-  const user = useSelector(selectLoggedInUser)
+  const user = useSelector(selectLoggedInUser);
   //here we can do reset of this cart and order
   useEffect(() => {
     //reset cart
     dispatch(resetCartAsync(user.id));
     // reset currentOrder
-    dispatch(resetOrder())
+    dispatch(resetOrder());
+
+    toast.success("Order Successfully Placed!", {
+      position: "top-center",
+    });
   }, [dispatch, user.id]);
 
   return (
@@ -41,6 +47,7 @@ function OrderSuccessPage() {
           </div>
         </div>
       </main>
+      <ToastContainer />
     </>
   );
 }

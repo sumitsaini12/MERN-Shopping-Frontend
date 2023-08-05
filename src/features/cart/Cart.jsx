@@ -9,11 +9,12 @@ import {
   updataCartAsync,
 } from "./cartSlice";
 import { discountedPrice } from "../../app/constants";
+import Model from "../commen/Model";
 
 function Cart() {
-  const [open, setOpen] = useState(true);
   const products = useSelector(selectItems);
   const dispatch = useDispatch();
+  const [openModel, setOpenModel] = useState(-1);
 
   const totalAmount = products.reduce((amount, item) => {
     return discountedPrice(item) * item.quantity + amount;
@@ -83,9 +84,18 @@ function Cart() {
                         </div>
 
                         <div className="flex">
+                          <Model
+                            title={`Delete ${item.title}`}
+                            message={`Are you sure you want to delete this ${item.title} ?`}
+                            dangerOption="Delete"
+                            cancelOption="Cancel"
+                            dangerAction={() => handleRemove(item.id)}
+                            cancelAction={() => setOpenModel(-1)}
+                            showModel={openModel === item.id}
+                          />
                           <button
                             type="button"
-                            onClick={() => handleRemove(item.id)}
+                            onClick={() => setOpenModel(item.id)}
                             className="font-medium text-indigo-600 hover:text-indigo-500"
                           >
                             Remove
@@ -132,7 +142,6 @@ function Cart() {
                 <button
                   type="button"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
-                  onClick={() => setOpen(false)}
                 >
                   Continue Shopping
                   <span aria-hidden="true"> &rarr;</span>
