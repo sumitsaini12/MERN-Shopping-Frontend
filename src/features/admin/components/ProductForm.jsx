@@ -215,7 +215,7 @@ function ProductForm() {
                   >
                     <option value="">--choose brand--</option>
                     {brands.map((brand) => (
-                      <option value={brand.value}>{brand.value}</option>
+                      <option key={brand.value} value={brand.value}>{brand.value}</option>
                     ))}
                   </select>
                 </div>
@@ -241,7 +241,7 @@ function ProductForm() {
                   >
                     <option value="">--choose category--</option>
                     {categories.map((category) => (
-                      <option value={category.value}>{category.value}</option>
+                      <option key={category.value} value={category.value}>{category.value}</option>
                     ))}
                   </select>
                 </div>

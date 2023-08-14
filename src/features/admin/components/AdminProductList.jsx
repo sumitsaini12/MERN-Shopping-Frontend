@@ -90,7 +90,9 @@ function AdminProductList() {
 
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
-    dispatch(fetchProductByFitlerAsync({ filter, sort, pagination }));
+    dispatch(
+      fetchProductByFitlerAsync({ filter, sort, pagination, admin: true })
+    );
   }, [dispatch, filter, sort, page]);
 
   useEffect(() => {
@@ -455,7 +457,7 @@ function Pagination({ page, ITEMS_PER_PAGE, handlePage, setPage, totalItems }) {
             {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
 
             {Array.from({ length: totalPages }).map((el, index) => (
-              <button
+              <button key={index}
                 onClick={() => handlePage(index + 1)}
                 aria-current="page"
                 className={`relative z-10 inline-flex items-center px-4 py-2 text-sm font-semiboldfocus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 border cursor-pointer ${
@@ -491,11 +493,8 @@ function ProductGrid({ products }) {
           <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
             <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
               {products.map((product) => (
-                <div>
-                  <Link
-                    key={product.id}
-                    to={`/product-detail/${product.id}`}
-                  >
+                <div key={product.id}>
+                  <Link to={`/admin/product-detail/${product.id}`}>
                     <div className="group relative border-2 rounded-t-md">
                       <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                         <img
@@ -525,8 +524,7 @@ function ProductGrid({ products }) {
                         </div>
                         <div>
                           <p className="text-sm font-medium text-gray-900">
-                            $
-                            {discountedPrice(product)}
+                            ${discountedPrice(product)}
                           </p>
                           <p className="text-sm line-through font-medium text-gray-500">
                             ${product.price}

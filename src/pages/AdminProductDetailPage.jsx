@@ -1,4 +1,5 @@
 import React from "react";
+import AdminProductDetail from "../features/admin/components/AdminProductDetail";
 import NavBar from "../features/navbar/NavBar";
 
 
@@ -6,7 +7,7 @@ function AdminProductDetailPage() {
     return ( 
         <>
             <NavBar>
-                <AdminProductDetailPage></AdminProductDetailPage>
+                <AdminProductDetail></AdminProductDetail>
             </NavBar>
         </>
      );

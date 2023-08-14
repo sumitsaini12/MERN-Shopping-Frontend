@@ -9,14 +9,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 function UserProfile() {
   const dispatch = useDispatch();
-  const user = useSelector(selectUserInfo);
+  const userInfo = useSelector(selectUserInfo);
   const [selectedEditIndex, setSelectedEditIndex] = useState(-1);
   const [showAddAddressForm, setShowAddAddressForm] = useState(false);
   const [openModel, setOpenModel] = useState(-1);
 
   const handleShowForm = (e, index) => {
     setSelectedEditIndex(index);
-    const address = user.addresses[index];
+    const address = userInfo.addresses[index];
     setFieldValue("fullName", address.fullName);
     setFieldValue("email", address.email);
     setFieldValue("phone", address.phone);
@@ -28,7 +28,7 @@ function UserProfile() {
   };
 
   const handleRemove = (e, index) => {
-    const newUser = { ...user, addresses: [...user.addresses] }; // for shallow copy issue
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] }; // for shallow copy issue
     newUser.addresses.splice(index, 1);
     dispatch(updateUserAsync(newUser));
     toast.info("User Address delete successfully", {
@@ -37,7 +37,7 @@ function UserProfile() {
   };
 
   const EditAddress = (values) => {
-    const newUser = { ...user, addresses: [...user.addresses] }; // for shallow copy issue
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] }; // for shallow copy issue
     newUser.addresses.splice(selectedEditIndex, 1, values);
     dispatch(updateUserAsync(newUser));
     setSelectedEditIndex(-1);
@@ -49,12 +49,12 @@ function UserProfile() {
   };
 
   const addNewAddress = (values) => {
-    const newUser = { ...user, addresses: [...user.addresses, values] }; // for shallow copy issue
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses, values] }; // for shallow copy issue
     dispatch(updateUserAsync(newUser));
     setShowAddAddressForm(false);
     handleReset();
-     //alert("new user address add successfully");
-     toast.success("New Address Add Successfully", {
+    //alert("new userInfo address add successfully");
+    toast.success("New Address Add Successfully", {
       position: "top-center",
     });
   };
@@ -109,17 +109,17 @@ function UserProfile() {
         <div>
           <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-              <div className="flex justify-between">
+              <div className="sm:flex sm:justify-between ">
                 <div>
                   <h1 className="text-4xl my-5 font-bold tracking-tight text-gray-900">
-                    Name:- {user ? <span>Sumit Saini</span> : "New User"}
+                    Name:- {userInfo.name ? <span>{userInfo.name}</span> : "New User"}
                   </h1>
                   <h3 className="text-xl my-5 font-bold tracking-tight text-red-900">
-                    Email Address:- {user.email}
+                    Email Address:- {userInfo.email}
                   </h3>
-                  {user.role === "admin" && (
+                  {userInfo.role === "admin" && (
                     <h3 className="text-xl my-5 font-bold tracking-tight text-red-900">
-                      Role:- {user.role}
+                      Role:- {userInfo.role}
                     </h3>
                   )}
                 </div>
@@ -392,7 +392,7 @@ function UserProfile() {
                 Your Addresses :
               </p>
 
-              {user.addresses.map((address, index) => (
+              {userInfo.addresses.map((address, index) => (
                 <>
                   {/* form */}
                   {selectedEditIndex === index ? (
@@ -663,7 +663,7 @@ function UserProfile() {
                         {address.city}
                       </p>
                     </div>
-                    <div className="hidden sm:flex sm:flex-col sm:items-end">
+                    <div className=" flex flex-col items-end">
                       <button
                         type="button"
                         onClick={(e) => {

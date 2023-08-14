@@ -20,3 +20,8 @@ export function fetchAllOrders(sort, pagination) {
 export function updateOrder(order) {
   return axios.patch(`http://localhost:3000/orders/${order.id}`, order);
 }
+
+
+export function deleteOrder(orderId) {
+  return axios.delete(`http://localhost:3000/orders/${orderId}`)
+}

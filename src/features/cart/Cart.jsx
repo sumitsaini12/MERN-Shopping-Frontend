@@ -12,20 +12,20 @@ import { discountedPrice } from "../../app/constants";
 import Model from "../commen/Model";
 
 function Cart() {
-  const products = useSelector(selectItems);
+  const items = useSelector(selectItems);
   const dispatch = useDispatch();
   const [openModel, setOpenModel] = useState(-1);
 
-  const totalAmount = products.reduce((amount, item) => {
-    return discountedPrice(item) * item.quantity + amount;
+  const totalAmount = items.reduce((amount, item) => {
+    return discountedPrice(item.product) * item.quantity + amount;
   }, 0);
 
-  const totalItems = products.reduce((total, item) => {
+  const totalItems = items.reduce((total, item) => {
     return +item.quantity + total;
   }, 0);
 
   const handleQuantity = (e, item) => {
-    dispatch(updataCartAsync({ ...item, quantity: e.target.value }));
+    dispatch(updataCartAsync({ id:item.id, quantity: e.target.value }));
   };
 
   const handleRemove = (itemId) => {
@@ -34,19 +34,19 @@ function Cart() {
 
   return (
     <>
-      {!products.length && <Navigate to="/" replace={true}></Navigate>}
+      {!items.length && <Navigate to="/" replace={true}></Navigate>}
       <div className="mx-auto mt-24 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <h2 className="text-5xl font-bold my-5">Cart</h2>
           <div className="flow-root">
             <ul role="list" className="-my-6 divide-y divide-gray-200">
-              {products &&
-                products.map((item) => (
+              {items &&
+                items.map((item) => (
                   <li key={item.id} className="flex py-6">
                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                       <img
-                        src={item.thumbnail}
-                        alt={item.title}
+                        src={item.product.thumbnail}
+                        alt={item.product.title}
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
@@ -54,11 +54,11 @@ function Cart() {
                     <div className="ml-4 flex flex-1 flex-col">
                       <div>
                         <div className="flex justify-between text-base font-medium text-gray-900">
-                          <h3>{item.title}</h3>
-                          <p className="ml-4"> ${discountedPrice(item)}</p>
+                          <h3>{item.product.title}</h3>
+                          <p className="ml-4"> ${discountedPrice(item.product)}</p>
                         </div>
                         <p className="mt-1 text-sm text-gray-500">
-                          {item.brand}
+                          {item.product.brand}
                         </p>
                       </div>
                       <div className="flex flex-1 items-end justify-between text-sm">
@@ -85,8 +85,8 @@ function Cart() {
 
                         <div className="flex">
                           <Model
-                            title={`Delete ${item.title}`}
-                            message={`Are you sure you want to delete this ${item.title} ?`}
+                            title={`Delete ${item.product.title}`}
+                            message={`Are you sure you want to delete this ${item.product.title} ?`}
                             dangerOption="Delete"
                             cancelOption="Cancel"
                             dangerAction={() => handleRemove(item.id)}

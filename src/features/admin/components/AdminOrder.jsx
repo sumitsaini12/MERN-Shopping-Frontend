@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
 import {
+  deleteOrderAsync,
   fetchAllOrderAsync,
   selectOrders,
   selectTotalOrders,
   updateOrderAsync,
 } from "../../order/orderSlice";
+import { RxCross2 } from "react-icons/rx";
 import {
   PencilIcon,
   EyeIcon,
@@ -16,16 +18,18 @@ import {
 import Pagination from "../../commen/Pagination";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Model from "../../commen/Model";
 
 function AdminOrder() {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [editableOrderId, setEditableOrderId] = useState(-1);
+  const [openModel, setOpenModel] = useState(-1);
   const [sort, setSort] = useState({});
 
   const orders = useSelector(selectOrders);
-  const totalOrders = useSelector(selectTotalOrders);
 
+  const totalOrders = useSelector(selectTotalOrders);
   const handlePage = (page) => {
     setPage(page);
   };
@@ -43,11 +47,20 @@ function AdminOrder() {
 
   const handleShow = (order) => {
     console.log("handleShow");
+    setEditableOrderId(-1);
   };
 
   const handleEdit = (order) => {
     setEditableOrderId(order.id);
   };
+
+  const handleOrderDelete = (orderId) => {
+    dispatch(deleteOrderAsync(orderId));
+  };
+
+  // const handleRemove = (itemId) => {
+  //   dispatch(deleteItemFromCartAsync(itemId));
+  // };
 
   const handleUpdate = (e, order) => {
     const updatedOrder = { ...order, status: e.target.value };
@@ -125,7 +138,10 @@ function AdminOrder() {
                 </thead>
                 <tbody className="text-gray-600 text-sm font-light">
                   {orders.map((order) => (
-                    <tr className="border-b border-gray-200 hover:bg-gray-100">
+                    <tr
+                      key={order.id}
+                      className="border-b border-gray-200 hover:bg-gray-100"
+                    >
                       <td className="py-3 px-6 text-left whitespace-nowrap">
                         <div className="flex items-center">
                           <span className="font-medium">{order.id}</span>
@@ -133,16 +149,17 @@ function AdminOrder() {
                       </td>
                       <td className="py-3 px-6 text-left">
                         {order.items.map((item) => (
-                          <div className="flex items-center">
+                          <div key={item.id} className="flex items-center">
                             <div className="mr-2">
                               <img
                                 className="w-6 h-6 rounded-full"
-                                src={item.thumbnail}
+                                src={item.product.thumbnail}
+                                alt={item.product.title}
                               />
                             </div>
                             <span className="text-sm font-medium">
-                              {item.title} - #{item.quantity} - $
-                              {discountedPrice(item)}
+                              {item.product.title} - #{item.quantity} - $
+                              {discountedPrice(item.product)}
                             </span>
                           </div>
                         ))}
@@ -201,10 +218,10 @@ function AdminOrder() {
                         )}
                       </td>
                       <td className="py-3 px-6 text-center">
-                        <div className="flex item-center justify-center">
+                        <div className="flex justify-between">
                           <div
                             onClick={(e) => handleShow(order)}
-                            className="w-4 mr-4 transform hover:text-purple-500 hover:scale-110"
+                            className="w-4 transform hover:text-purple-500 hover:scale-110"
                           >
                             <EyeIcon className="w-6 h-6" />
                           </div>
@@ -213,6 +230,23 @@ function AdminOrder() {
                             className="w-4  transform hover:text-purple-500 hover:scale-110 pl-3"
                           >
                             <PencilIcon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <Model
+                              title={`Delete ${order.id} id Order`}
+                              message={`Are you sure you want to delete this Order ?`}
+                              dangerOption="Delete"
+                              cancelOption="Cancel"
+                              dangerAction={() => handleOrderDelete(order.id)}
+                              cancelAction={() => setOpenModel(-1)}
+                              showModel={openModel === order.id}
+                            />
+                            <div
+                              onClick={(e) => setOpenModel(order.id)}
+                              className="w-4 ml-2 transform hover:text-purple-500 hover:scale-110 pl-3"
+                            >
+                              <RxCross2 className="w-5 h-5" />
+                            </div>
                           </div>
                         </div>
                       </td>

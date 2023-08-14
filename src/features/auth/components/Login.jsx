@@ -14,10 +14,6 @@ function Login() {
   const user = useSelector(selectLoggedInUser);
 
   const LogInUser = (values) => {
-    console.log("submit Data", {
-      email: values.email,
-      password: values.password,
-    });
     dispatch(
       checkUserAsync({ email: values.email, password: values.password })
     );

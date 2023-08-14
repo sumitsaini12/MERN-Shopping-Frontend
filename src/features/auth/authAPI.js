@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function createUser(userData) {
   // Todo: on server it will only return some info of user (not pasword)
-  return axios.post("http://localhost:3000/users", userData, {
+  return axios.post("http://localhost:3000/auth/signup", userData, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -12,19 +12,21 @@ export function createUser(userData) {
 export function checkUser(loginInfo) {
   // Eka bar authSlice me checkUserAsync funtion ko in check kar le
   return new Promise(async (resolve, reject) => {
-    const email = loginInfo.email;
-    const password = loginInfo.password;
-    const { data } = await axios.get(
-      "http://localhost:3000/users?email=" + email
-    );
-    if (data.length) {
-      if (password === data[0].password) {
-        resolve({ data: data[0] });
+    try {
+      const response = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        body: JSON.stringify(loginInfo),
+        headers: { "content-type": "application/json" },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        resolve(data);
       } else {
-        reject({ message: "wrong credentials" });
+        const err = await response.json();
+        reject(err);
       }
-    } else {
-      reject({ message: "wrong credentials" });
+    } catch (err) {
+      reject(err);
     }
   });
 }

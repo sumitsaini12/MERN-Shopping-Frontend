@@ -1,10 +1,7 @@
 import { data } from "autoprefixer";
 import axios from "axios";
-export function fetchProducts() {
-  return axios.get("http://localhost:3000/products");
-}
 
-export function fetchProductsByFilters(filter, sort, pagination) {
+export function fetchProductsByFilters(filter, sort, pagination, admin) {
   // filter = {"category": ["smartphone", "laptops"], "brand": ["apple", "oppo"]}
   // sort ={_sort:"price", _order="desc"}
   // Todo= Server support multiple categories
@@ -27,6 +24,9 @@ export function fetchProductsByFilters(filter, sort, pagination) {
   for (let key in pagination) {
     queryString += `${key}=${pagination[key]}&`;
   }
+  if (admin) {
+    queryString += `admin=true`;
+  }
   return axios.get(`http://localhost:3000/products?${queryString}`);
 }
 
@@ -42,10 +42,9 @@ export function fetchCategories() {
   return axios.get("http://localhost:3000/categories");
 }
 
-
 //only Admin kai liye
 export function createProduct(product) {
-  return axios.post("http://localhost:3000/products", product)
+  return axios.post("http://localhost:3000/products", product);
 }
 
 export function updateProduct(update) {

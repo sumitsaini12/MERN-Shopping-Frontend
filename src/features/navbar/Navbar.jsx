@@ -217,11 +217,8 @@ function NavBar({ children }) {
                   </div>
                   <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (
-                      <Link to={item.link}>
-                        <Disclosure.Button
-                          key={item.name}
-                          className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                        >
+                      <Link key={item.name} to={item.link}>
+                        <Disclosure.Button className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
                           {item.name}
                         </Disclosure.Button>
                       </Link>
@@ -235,7 +232,7 @@ function NavBar({ children }) {
 
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+            <h1 className="text-3xl font-bold text-center sm:text-start tracking-tight text-sky-400">
               E-Shopping
             </h1>
           </div>

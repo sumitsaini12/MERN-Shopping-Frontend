@@ -31,7 +31,6 @@ export const updateUserAsync = createAsyncThunk(
   "user/updateUser",
   async (updateInfo) => {
     const response = await updateUser(updateInfo);
-    console.log("update response", response);
     return response.data;
   }
 );
@@ -68,6 +67,7 @@ export const userSlice = createSlice({
 
 export const {} = userSlice.actions;
 
+// TODO: change orders and address to be independent of user;
 export const selectUserOrders = (state) => state.user.userOrders;
 export const selectUserInfo = (state) => state.user.userInfo;
 
