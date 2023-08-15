@@ -19,6 +19,8 @@ import Pagination from "../../commen/Pagination";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Model from "../../commen/Model";
+import { clickButton } from "../../../app/style";
+import { motion } from "framer-motion";
 
 function AdminOrder() {
   const dispatch = useDispatch();
@@ -219,18 +221,20 @@ function AdminOrder() {
                       </td>
                       <td className="py-3 px-6 text-center">
                         <div className="flex justify-between">
-                          <div
+                          <motion.div
+                            {...clickButton}
                             onClick={(e) => handleShow(order)}
                             className="w-4 transform hover:text-purple-500 hover:scale-110"
                           >
                             <EyeIcon className="w-6 h-6" />
-                          </div>
-                          <div
+                          </motion.div>
+                          <motion.div
+                            {...clickButton}
                             onClick={(e) => handleEdit(order)}
                             className="w-4  transform hover:text-purple-500 hover:scale-110 pl-3"
                           >
                             <PencilIcon className="w-5 h-5" />
-                          </div>
+                          </motion.div>
                           <div>
                             <Model
                               title={`Delete ${order.id} id Order`}
@@ -241,12 +245,13 @@ function AdminOrder() {
                               cancelAction={() => setOpenModel(-1)}
                               showModel={openModel === order.id}
                             />
-                            <div
+                            <motion.div
+                            {...clickButton}
                               onClick={(e) => setOpenModel(order.id)}
                               className="w-4 ml-2 transform hover:text-purple-500 hover:scale-110 pl-3"
                             >
                               <RxCross2 className="w-5 h-5" />
-                            </div>
+                            </motion.div>
                           </div>
                         </div>
                       </td>

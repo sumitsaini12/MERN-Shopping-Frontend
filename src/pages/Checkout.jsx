@@ -17,6 +17,8 @@ import { discountedPrice } from "../app/constants";
 import Model from "../features/commen/Model";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
+import { clickButton } from "../app/style";
 
 function Checkout() {
   const items = useSelector(selectItems);
@@ -343,19 +345,19 @@ function Checkout() {
                 </div>
 
                 <div className="mt-6 flex items-center justify-end gap-x-6">
-                  <button
+                  <motion.button {...clickButton}
                     onClick={handleReset}
                     type="button"
                     className="text-sm font-semibold leading-6 text-gray-900 px-4 py-1 rounded-md border"
                   >
                     Reset
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button {...clickButton}
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
                     Add Address
-                  </button>
+                  </motion.button>
                 </div>
 
                 <div className="border-b border-gray-900/10 pb-12">
@@ -515,13 +517,13 @@ function Checkout() {
                                   cancelAction={() => setOpenModel(-1)}
                                   showModel={openModel === item.id}
                                 />
-                                <button
+                                <motion.button {...clickButton}
                                   type="button"
                                   onClick={() => setOpenModel(item.id)}
                                   className="font-medium text-indigo-600 hover:text-indigo-500"
                                 >
                                   Remove
-                                </button>
+                                </motion.button>
                               </div>
                             </div>
                           </div>
@@ -562,13 +564,13 @@ function Checkout() {
                     or
                     <Link to="/">
                       {" "}
-                      <button
+                      <motion.button {...clickButton}
                         type="button"
                         className="font-medium text-indigo-600 hover:text-indigo-500"
                       >
                         Continue Shopping
                         <span aria-hidden="true"> &rarr;</span>
-                      </button>
+                      </motion.button>
                     </Link>
                   </p>
                 </div>

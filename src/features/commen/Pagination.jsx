@@ -1,25 +1,29 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import { ITEMS_PER_PAGE } from "../../app/constants";
+import { motion } from "framer-motion";
+import { paginationButton } from "../../app/style";
 
 function Pagination({ page, handlePage, setPage, totalItems }) {
   const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
   return (
     <>
       <div className="flex flex-1 justify-between sm:hidden">
-        <button
+        <motion.button
+              {...paginationButton}
           disabled={page === 1 ? true : false}
           onClick={() => setPage(page - 1)}
           className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:bg-slate-200"
         >
           Previous
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+              {...paginationButton}
           disabled={page >= totalPages ? true : false}
           onClick={() => setPage(page + 1)}
           className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:bg-slate-200"
         >
           Next
-        </button>
+        </motion.button>
       </div>
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
@@ -51,7 +55,8 @@ function Pagination({ page, handlePage, setPage, totalItems }) {
               <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
             </button>
             {Array.from({ length: totalPages }).map((el, index) => (
-              <button
+              <motion.button
+                {...paginationButton}
                 key={index}
                 onClick={() => handlePage(index + 1)}
                 aria-current="page"
@@ -62,17 +67,18 @@ function Pagination({ page, handlePage, setPage, totalItems }) {
                 }`}
               >
                 {index + 1}
-              </button>
+              </motion.button>
             ))}
 
-            <button
+            <motion.button
+              {...paginationButton}
               onClick={() => setPage(page + 1)}
               disabled={page >= totalPages ? true : false}
               className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:bg-slate-200"
             >
               <span className="sr-only">Next</span>
               <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
-            </button>
+            </motion.button>
           </nav>
         </div>
       </div>

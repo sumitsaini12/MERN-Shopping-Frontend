@@ -417,7 +417,7 @@ function ProductGrid({ products, status }) {
               ) : null}
               {products.map((product) => (
                 <Link key={product.id} to={`/product-detail/${product.id}`}>
-                  <div className="group relative border-2 rounded-t-md">
+                  <div className="group relative border-2 rounded-t-md transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg ">
                     <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                       <img
                         src={product.thumbnail}
@@ -427,21 +427,11 @@ function ProductGrid({ products, status }) {
                     </div>
                     <div className="mt-4 flex justify-between p-2">
                       <div>
-                        <h3 className="text-sm text-gray-700">
-                          <div>
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-0"
-                            />
-                            {product.title}
-                          </div>
+                        <h3 className="text-sm font-semibold text-gray-700">
+                          {product.title}
                         </h3>
-                        <p className="mt-1 text-sm text-gray-500">
-                          <StarIcon className="w-6 h-6 inline" />
-                          <span className="align-bottom">
-                            {" "}
-                            {product.rating}
-                          </span>
+                        <p className="mt-1 text-sm font-medium text-gray-500">
+                          {product.brand}
                         </p>
                       </div>
                       <div>
@@ -478,3 +468,4 @@ function ProductGrid({ products, status }) {
     </>
   );
 }
+

@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import Model from "../../commen/Model";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { clickButton } from "../../../app/style";
+import { motion } from "framer-motion";
 
 function UserProfile() {
   const dispatch = useDispatch();
@@ -124,7 +126,7 @@ function UserProfile() {
                   )}
                 </div>
                 <div>
-                  <button
+                  <motion.button {...clickButton}
                     type="submit"
                     onClick={() => {
                       setShowAddAddressForm(true);
@@ -133,7 +135,7 @@ function UserProfile() {
                     className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 my-4"
                   >
                     Add New Address
-                  </button>
+                  </motion.button>
                 </div>
               </div>
               {/* form */}
@@ -365,7 +367,7 @@ function UserProfile() {
                     </div>
 
                     <div className="mt-6 flex items-center justify-end gap-x-6">
-                      <button
+                    <motion.button {...clickButton}
                         type="button"
                         onClick={() => {
                           setShowAddAddressForm(false);
@@ -373,14 +375,14 @@ function UserProfile() {
                         className="font-medium text-indigo-600 hover:text-indigo-500 border rounded-md px-4 py-1"
                       >
                         Cancel
-                      </button>
+                      </motion.button>
 
-                      <button
+                        <motion.button {...clickButton}
                         type="submit"
                         className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       >
                         Add Address
-                      </button>
+                      </motion.button>
                     </div>
                   </div>
                 </form>
@@ -619,7 +621,7 @@ function UserProfile() {
                         </div>
 
                         <div className="mt-6 flex items-center justify-end gap-x-6">
-                          <button
+                          <motion.button {...clickButton}
                             type="button"
                             onClick={() => {
                               setSelectedEditIndex(-1);
@@ -628,14 +630,14 @@ function UserProfile() {
                             className="font-medium text-indigo-600 hover:text-indigo-500 border rounded-md px-4 py-1"
                           >
                             Cancel
-                          </button>
+                          </motion.button>
 
-                          <button
+                          <motion.button {...clickButton}
                             type="submit"
                             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                           >
                             Edit Address
-                          </button>
+                          </motion.button>
                         </div>
                       </div>
                     </form>
@@ -664,7 +666,7 @@ function UserProfile() {
                       </p>
                     </div>
                     <div className=" flex flex-col items-end">
-                      <button
+                      <motion.button {...clickButton}
                         type="button"
                         onClick={(e) => {
                           handleShowForm(e, index);
@@ -673,7 +675,7 @@ function UserProfile() {
                         className="font-medium text-indigo-600 hover:text-indigo-500"
                       >
                         Edit
-                      </button>
+                      </motion.button>
                       <Model
                         title={`Delete ${address.name} address`}
                         message={`Are you sure you want to delete this ${address.name} address ?`}
@@ -683,13 +685,13 @@ function UserProfile() {
                         cancelAction={() => setOpenModel(-1)}
                         showModel={openModel === index}
                       />
-                      <button
+                      <motion.button {...clickButton}
                         type="button"
                         onClick={() => setOpenModel(index)}
                         className="font-medium text-indigo-600 hover:text-indigo-500"
                       >
                         Remove
-                      </button>
+                      </motion.button>
                     </div>
                   </div>
                 </>

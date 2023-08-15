@@ -2,6 +2,7 @@ import React, { useState, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { motion } from "framer-motion";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -25,6 +26,8 @@ import {
   selectTotalItems,
 } from "../../product/productSlice";
 import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
+import Pagination from "../../commen/Pagination";
+import { clickButton, productButton } from "../../../app/style";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
@@ -164,21 +167,21 @@ function AdminProductList() {
                 </Transition>
               </Menu>
 
-              <button
+              <motion.button {...clickButton}
                 type="button"
                 className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7"
               >
                 <span className="sr-only">View grid</span>
                 <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
-              </button>
-              <button
+              </motion.button>
+              <motion.button {...clickButton}
                 type="button"
                 className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
                 onClick={() => setMobileFiltersOpen(true)}
               >
                 <span className="sr-only">Filters</span>
                 <FunnelIcon className="h-5 w-5" aria-hidden="true" />
-              </button>
+              </motion.button>
             </div>
           </div>
 
@@ -194,14 +197,14 @@ function AdminProductList() {
               {/* Product grid */}
               <div className="lg:col-span-3">
                 {/* This is our products list  */}
-                <div className="flex justify-end">
+                <motion.div {...clickButton} className="flex justify-end">
                   <Link
                     to="/admin/product-form"
                     className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 my-4"
                   >
                     Add New Product
                   </Link>
-                </div>
+                </motion.div>
                 <ProductGrid products={products} />
               </div>
               {/* Product grid end */}
@@ -265,14 +268,14 @@ function MobileFilter({
               <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
                 <div className="flex items-center justify-between px-4">
                   <h2 className="text-lg font-medium text-gray-900">Filters</h2>
-                  <button
+                  <motion.button {...clickButton}
                     type="button"
                     className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
                     onClick={() => setMobileFiltersOpen(false)}
                   >
                     <span className="sr-only">Close menu</span>
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
+                  </motion.button>
                 </div>
 
                 {/* Filters */}
@@ -405,86 +408,6 @@ function DesktopFilter({ handleFilter, filters }) {
   );
 }
 
-function Pagination({ page, ITEMS_PER_PAGE, handlePage, setPage, totalItems }) {
-  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
-  return (
-    <>
-      <div className="flex flex-1 justify-between sm:hidden">
-        <button
-          disabled={page === 1 ? true : false}
-          onClick={() => setPage(page - 1)}
-          className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:bg-slate-200"
-        >
-          Previous
-        </button>
-        <button
-          disabled={page >= totalPages ? true : false}
-          onClick={() => setPage(page + 1)}
-          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:bg-slate-200"
-        >
-          Next
-        </button>
-      </div>
-      <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-        <div>
-          <p className="text-sm text-gray-700">
-            Showing{" "}
-            <span className="font-medium">
-              {(page - 1) * ITEMS_PER_PAGE + 1}
-            </span>{" "}
-            to{" "}
-            <span className="font-medium">
-              {page * ITEMS_PER_PAGE > totalItems
-                ? totalItems
-                : page * ITEMS_PER_PAGE}
-            </span>{" "}
-            of <span className="font-medium">{totalItems}</span> results
-          </p>
-        </div>
-        <div>
-          <nav
-            className="isolate inline-flex -space-x-px rounded-md shadow-sm"
-            aria-label="Pagination"
-          >
-            <button
-              onClick={() => setPage(page - 1)}
-              disabled={page === 1 ? true : false}
-              className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:bg-slate-200 "
-            >
-              <span className="sr-only">Previous</span>
-              <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
-            </button>
-            {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
-
-            {Array.from({ length: totalPages }).map((el, index) => (
-              <button key={index}
-                onClick={() => handlePage(index + 1)}
-                aria-current="page"
-                className={`relative z-10 inline-flex items-center px-4 py-2 text-sm font-semiboldfocus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 border cursor-pointer ${
-                  index + 1 === page
-                    ? "bg-indigo-600 text-white"
-                    : "text-gray-400"
-                }`}
-              >
-                {index + 1}
-              </button>
-            ))}
-
-            <button
-              onClick={() => setPage(page + 1)}
-              disabled={page >= totalPages ? true : false}
-              className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:bg-slate-200"
-            >
-              <span className="sr-only">Next</span>
-              <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
-            </button>
-          </nav>
-        </div>
-      </div>
-    </>
-  );
-}
-
 function ProductGrid({ products }) {
   return (
     <>
@@ -495,7 +418,7 @@ function ProductGrid({ products }) {
               {products.map((product) => (
                 <div key={product.id}>
                   <Link to={`/admin/product-detail/${product.id}`}>
-                    <div className="group relative border-2 rounded-t-md">
+                    <div className="group relative border-2 rounded-t-md transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg ">
                       <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                         <img
                           src={product.thumbnail}
@@ -505,28 +428,18 @@ function ProductGrid({ products }) {
                       </div>
                       <div className="mt-4 flex justify-between p-2">
                         <div>
-                          <h3 className="text-sm text-gray-700">
-                            <div>
-                              <span
-                                aria-hidden="true"
-                                className="absolute inset-0"
-                              />
-                              {product.title}
-                            </div>
+                          <h3 className="text-sm font-semibold text-gray-700">
+                            {product.title}
                           </h3>
-                          <p className="mt-1 text-sm text-gray-500">
-                            <StarIcon className="w-6 h-6 inline" />
-                            <span className="align-bottom">
-                              {" "}
-                              {product.rating}
-                            </span>
+                          <p className="mt-1 text-sm font-medium text-gray-500">
+                            {product.brand}
                           </p>
                         </div>
                         <div>
                           <p className="text-sm font-medium text-gray-900">
                             ${discountedPrice(product)}
                           </p>
-                          <p className="text-sm line-through font-medium text-gray-500">
+                          <p className="text-sm line-through font-medium text-red-500">
                             ${product.price}
                           </p>
                         </div>
@@ -540,14 +453,14 @@ function ProductGrid({ products }) {
                       )}
                     </div>
                   </Link>
-                  <div className="mt-5">
+                  <motion.div {...productButton} className="mt-5">
                     <Link
                       to={`/admin/product-form/edit/${product.id}`}
                       className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                     >
                       Edit Product
                     </Link>
-                  </div>
+                  </motion.div>
                 </div>
               ))}
             </div>

@@ -10,6 +10,8 @@ import {
 } from "./cartSlice";
 import { discountedPrice } from "../../app/constants";
 import Model from "../commen/Model";
+import { motion } from "framer-motion";
+import { clickButton } from "../../app/style";
 
 function Cart() {
   const items = useSelector(selectItems);
@@ -93,13 +95,13 @@ function Cart() {
                             cancelAction={() => setOpenModel(-1)}
                             showModel={openModel === item.id}
                           />
-                          <button
+                          <motion.button {...clickButton}
                             type="button"
                             onClick={() => setOpenModel(item.id)}
                             className="font-medium text-indigo-600 hover:text-indigo-500"
                           >
                             Remove
-                          </button>
+                          </motion.button>
                         </div>
                       </div>
                     </div>
@@ -126,26 +128,26 @@ function Cart() {
           <p className="mt-0.5 text-sm text-gray-500">
             Shipping and taxes calculated at checkout.
           </p>
-          <div className="mt-6">
+          <motion.div {...clickButton} className="mt-6">
             <Link
               to="/checkout"
               className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
               Checkout
             </Link>
-          </div>
+          </motion.div>
           <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
             <p>
               or
               <Link to="/">
                 {" "}
-                <button
+                <motion.button {...clickButton}
                   type="button"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
                   Continue Shopping
                   <span aria-hidden="true"> &rarr;</span>
-                </button>
+                </motion.button>
               </Link>
             </p>
           </div>

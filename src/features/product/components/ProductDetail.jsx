@@ -9,6 +9,8 @@ import { selectLoggedInUser } from "../../auth/authSlice";
 import { discountedPrice } from "../../../app/constants";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { clickButton } from "../../../app/style";
+import { motion } from "framer-motion";
 
 const colors = [
   { title: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -228,13 +230,13 @@ function ProductDetail() {
                   </RadioGroup>
                 </div>
                 <div className="mt-20">
-                  <button
+                  <motion.button {...clickButton}
                     onClick={handleCart}
                     type="submit"
                     className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     Add to Cart
-                  </button>
+                  </motion.button>
                 </div>
               </form>
             </div>

@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
   clearSelectedProduct,
   createProductAsync,
@@ -15,6 +16,7 @@ import { useParams } from "react-router-dom";
 import Model from "../../commen/Model";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { productButton } from "../../../app/style";
 
 function ProductForm() {
   const dispatch = useDispatch();
@@ -524,16 +526,18 @@ function ProductForm() {
         </div>
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
-          <button
+          <motion.button
+            {...productButton}
             type="button"
             onClick={() => handleReset()}
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Reset
-          </button>
+          </motion.button>
 
           {selectedProduct && selectedProduct && !selectedProduct.deleted && (
-            <button
+            <motion.button
+            {...productButton}
               type="button"
               onClick={(e) => {
                 e.preventDefault(), setOpenModel(true);
@@ -541,14 +545,15 @@ function ProductForm() {
               className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
             >
               Delete
-            </button>
+            </motion.button>
           )}
-          <button
+          <motion.button
+          {...productButton}
             type="submit"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Save
-          </button>
+          </motion.button>
         </div>
       </form>
       {selectedProduct && (
