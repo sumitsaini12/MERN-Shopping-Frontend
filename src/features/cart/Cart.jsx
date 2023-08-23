@@ -12,7 +12,7 @@ import { discountedPrice } from "../../app/constants";
 import Model from "../commen/Model";
 import { motion } from "framer-motion";
 import { clickButton } from "../../app/style";
-import { Grid } from "react-loader-spinner";
+import Loader from "../commen/Loader";
 
 function Cart() {
   const items = useSelector(selectItems);
@@ -47,16 +47,7 @@ function Cart() {
           <h2 className="text-5xl font-bold my-5">Cart</h2>
           <div className="flow-root">
             {status === "loading" ? (
-              <Grid
-                height="80"
-                width="80"
-                color="rgb(79, 70, 229) "
-                ariaLabel="grid-loading"
-                radius="12.5"
-                wrapperStyle={{}}
-                wrapperClass=""
-                visible={true}
-              />
+              <Loader />
             ) : null}
 
             <ul role="list" className="-my-6 divide-y divide-gray-200">

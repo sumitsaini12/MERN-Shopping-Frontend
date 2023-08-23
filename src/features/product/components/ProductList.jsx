@@ -2,7 +2,6 @@ import React, { useState, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { StarIcon } from "@heroicons/react/20/solid";
 import {
   ChevronDownIcon,
   FunnelIcon,
@@ -23,8 +22,7 @@ import {
 } from "../productSlice";
 import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
 import Pagination from "../../commen/Pagination";
-
-import { Grid } from "react-loader-spinner";
+import Loader from "../../commen/Loader";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
@@ -403,18 +401,7 @@ function ProductGrid({ products, status }) {
         <div className="bg-white">
           <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
             <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-              {status === "loading" ? (
-                <Grid
-                  height="80"
-                  width="80"
-                  color="rgb(79, 78,229)"
-                  ariaLabel="grid-loading"
-                  radius="12.5"
-                  wrapperStyle={{}}
-                  wrapperClass=""
-                  visible={true}
-                />
-              ) : null}
+              {status === "loading" ? <Loader /> : null}
               {products.map((product) => (
                 <Link key={product.id} to={`/product-detail/${product.id}`}>
                   <div className="group relative border-2 rounded-t-md transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg ">
@@ -468,4 +455,3 @@ function ProductGrid({ products, status }) {
     </>
   );
 }
-

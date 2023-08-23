@@ -6,13 +6,13 @@ import {
   selectUserOrders,
 } from "../userSlice";
 import { discountedPrice } from "../../../app/constants";
-import { Grid } from "react-loader-spinner";
+import Loader from "../../commen/Loader";
 
 function UserOrders() {
   const dispatch = useDispatch();
   const orders = useSelector(selectUserOrders);
   const status = useSelector(selectUserInfoStatus);
-console.log("orders", orders)
+  console.log("orders", orders);
 
   useEffect(() => {
     dispatch(fetchLoggedInUserOrderAsync());
@@ -139,18 +139,7 @@ console.log("orders", orders)
             </div>
           </div>
         ))}
-      {status === "loading" ? (
-        <Grid
-          height="80"
-          width="80"
-          color="rgb(79, 78,229)"
-          ariaLabel="grid-loading"
-          radius="12.5"
-          wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-        />
-      ) : null}
+      {status === "loading" ? <Loader /> : null}
     </div>
   );
 }
