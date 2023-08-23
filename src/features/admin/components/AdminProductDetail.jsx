@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToCartAsync, selectItems } from "../../cart/cartSlice";
 import { fetchProductByIdAsync, selectProductById } from "../../product/productSlice";
-import { selectLoggedInUser } from "../../auth/authSlice";
 import { discountedPrice } from "../../../app/constants";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,7 +37,6 @@ function AdminProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
 
   const dispatch = useDispatch();
-  const user = useSelector(selectLoggedInUser);
   const product = useSelector(selectProductById);
   const cartItems = useSelector(selectItems);
 
@@ -52,7 +50,6 @@ function AdminProductDetail() {
       const newItem = {
         product: product.id,
         quantity: 1,
-        user: user.id,
       };
       dispatch(addToCartAsync(newItem));
       //TODO: it will be based on server serponse of backend

@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import axios from "axios";
 
 export function fetchProductsByFilters(filter, sort, pagination, admin) {

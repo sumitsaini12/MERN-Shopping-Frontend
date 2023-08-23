@@ -3,10 +3,9 @@ import { Link, Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
-import { checkUserAsync, selectError, selectLoggedInUser } from "../authSlice";
+import { loginUserAsync, selectError, selectLoggedInUser } from "../authSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 function Login() {
   const dispatch = useDispatch();
@@ -15,7 +14,7 @@ function Login() {
 
   const LogInUser = (values) => {
     dispatch(
-      checkUserAsync({ email: values.email, password: values.password })
+      loginUserAsync({ email: values.email, password: values.password })
     );
     handleReset();
   };
@@ -44,7 +43,7 @@ function Login() {
 
   useEffect(() => {
     if (error) {
-      toast.error(error.message, {
+      toast.error(error || error.message, {
         position: "top-center",
       });
     }

@@ -8,7 +8,7 @@ import Checkout from "./pages/Checkout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import Protected from "./features/auth/components/Protected";
 import { useDispatch, useSelector } from "react-redux";
-import { selectLoggedInUser } from "./features/auth/authSlice";
+import { checkAuthAsync, selectLoggedInUser } from "./features/auth/authSlice";
 import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
 import PageNotFound from "./pages/404";
 import OrderSuccessPage from "./pages/OrderSuccessPage";
@@ -26,10 +26,16 @@ import AdminOrdersPage from "./pages/AdminOrdersPage";
 function App() {
   const user = useSelector(selectLoggedInUser);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuthAsync());
+  }, [dispatch]);
+
+
   useEffect(() => {
     if (user) {
-      dispatch(fetchItemsByUserIdAsync(user.id));
-      dispatch(fetchLoggedInUserInfoAsync(user.id));
+      dispatch(fetchItemsByUserIdAsync());
+      dispatch(fetchLoggedInUserInfoAsync());
     }
   }, [dispatch, user]);
   return (

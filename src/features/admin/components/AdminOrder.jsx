@@ -144,7 +144,7 @@ function AdminOrder() {
                       key={order.id}
                       className="border-b border-gray-200 hover:bg-gray-100"
                     >
-                      <td className="py-3 px-6 text-left whitespace-nowrap">
+                      <td className="py-3 px-6 text-left whitespace-nowrap ">
                         <div className="flex items-center">
                           <span className="font-medium">{order.id}</span>
                         </div>
@@ -224,14 +224,14 @@ function AdminOrder() {
                           <motion.div
                             {...clickButton}
                             onClick={(e) => handleShow(order)}
-                            className="w-4 transform hover:text-purple-500 hover:scale-110"
+                            className="w-4 transform hover:text-purple-500 hover:scale-110 mr-4"
                           >
                             <EyeIcon className="w-6 h-6" />
                           </motion.div>
                           <motion.div
                             {...clickButton}
                             onClick={(e) => handleEdit(order)}
-                            className="w-4  transform hover:text-purple-500 hover:scale-110 pl-3"
+                            className="w-4  transform hover:text-purple-500 hover:scale-110 pl-3 mr-4"
                           >
                             <PencilIcon className="w-5 h-5" />
                           </motion.div>

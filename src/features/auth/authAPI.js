@@ -9,7 +9,7 @@ export function createUser(userData) {
   });
 }
 
-export function checkUser(loginInfo) {
+export function loginUser(loginInfo) {
   // Eka bar authSlice me checkUserAsync funtion ko in check kar le
   return new Promise(async (resolve, reject) => {
     try {
@@ -22,7 +22,7 @@ export function checkUser(loginInfo) {
         const data = await response.json();
         resolve(data);
       } else {
-        const err = await response.json();
+        const err = await response.text();
         reject(err);
       }
     } catch (err) {
@@ -31,7 +31,29 @@ export function checkUser(loginInfo) {
   });
 }
 
-export function signOut(userId) {
+
+export function checkAuth() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch('http://localhost:3000/auth/check');
+      if (response.ok) {
+        const data = await response.json();
+        resolve({ data });
+      } else {
+        const error = await response.text();
+        reject(error);
+      }
+    } catch (error) {
+      reject( error );
+    }
+
+  });
+}
+
+
+
+
+export function signOut() {
   return new Promise(async (resolve) => {
     //TODO: on server we will remove user session info
 

@@ -13,16 +13,16 @@ const initialState = {
 
 export const fetchLoggedInUserOrderAsync = createAsyncThunk(
   "user/fetchLoggedInUserOrders",
-  async (userId) => {
-    const response = await fetchLoggedInUserOrders(userId);
+  async () => {
+    const response = await fetchLoggedInUserOrders();
     return response.data;
   }
 );
 
 export const fetchLoggedInUserInfoAsync = createAsyncThunk(
   "user/fetchLoggedInUser",
-  async (userId) => {
-    const response = await fetchLoggedInUser(userId);
+  async () => {
+    const response = await fetchLoggedInUser();
     return response.data;
   }
 );
@@ -48,6 +48,9 @@ export const userSlice = createSlice({
         state.status = "idld";
         state.userOrders = action.payload;
       })
+      .addCase(fetchLoggedInUserOrderAsync.rejected, (state) => {
+        state.status = "idld";
+      })
       .addCase(updateUserAsync.pending, (state) => {
         state.status = "loading";
       })
@@ -70,5 +73,5 @@ export const {} = userSlice.actions;
 // TODO: change orders and address to be independent of user;
 export const selectUserOrders = (state) => state.user.userOrders;
 export const selectUserInfo = (state) => state.user.userInfo;
-
+export const selectUserInfoStatus = (state) => state.user.status;
 export default userSlice.reducer;
