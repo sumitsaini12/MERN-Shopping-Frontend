@@ -1,10 +1,10 @@
-import React, { memo, Fragment, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import React, { memo, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteItemFromCartAsync,
+  selectCartLoaded,
+  selectCartStatus,
   selectItems,
   updataCartAsync,
 } from "./cartSlice";
@@ -12,9 +12,12 @@ import { discountedPrice } from "../../app/constants";
 import Model from "../commen/Model";
 import { motion } from "framer-motion";
 import { clickButton } from "../../app/style";
+import { Grid } from "react-loader-spinner";
 
 function Cart() {
   const items = useSelector(selectItems);
+  const status = useSelector(selectCartStatus);
+  const cartLoaded = useSelector(selectCartLoaded);
   const dispatch = useDispatch();
   const [openModel, setOpenModel] = useState(-1);
 
@@ -27,7 +30,7 @@ function Cart() {
   }, 0);
 
   const handleQuantity = (e, item) => {
-    dispatch(updataCartAsync({ id:item.id, quantity: e.target.value }));
+    dispatch(updataCartAsync({ id: item.id, quantity: e.target.value }));
   };
 
   const handleRemove = (itemId) => {
@@ -36,11 +39,26 @@ function Cart() {
 
   return (
     <>
-      {!items.length && <Navigate to="/" replace={true}></Navigate>}
+      {!items.length && cartLoaded && (
+        <Navigate to="/" replace={true}></Navigate>
+      )}
       <div className="mx-auto mt-24 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <h2 className="text-5xl font-bold my-5">Cart</h2>
           <div className="flow-root">
+            {status === "loading" ? (
+              <Grid
+                height="80"
+                width="80"
+                color="rgb(79, 70, 229) "
+                ariaLabel="grid-loading"
+                radius="12.5"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : null}
+
             <ul role="list" className="-my-6 divide-y divide-gray-200">
               {items &&
                 items.map((item) => (
@@ -57,7 +75,10 @@ function Cart() {
                       <div>
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <h3>{item.product.title}</h3>
-                          <p className="ml-4"> ${discountedPrice(item.product)}</p>
+                          <p className="ml-4">
+                            {" "}
+                            ${discountedPrice(item.product)}
+                          </p>
                         </div>
                         <p className="mt-1 text-sm text-gray-500">
                           {item.product.brand}
@@ -95,7 +116,8 @@ function Cart() {
                             cancelAction={() => setOpenModel(-1)}
                             showModel={openModel === item.id}
                           />
-                          <motion.button {...clickButton}
+                          <motion.button
+                            {...clickButton}
                             type="button"
                             onClick={() => setOpenModel(item.id)}
                             className="font-medium text-indigo-600 hover:text-indigo-500"
@@ -141,7 +163,8 @@ function Cart() {
               or
               <Link to="/">
                 {" "}
-                <motion.button {...clickButton}
+                <motion.button
+                  {...clickButton}
                   type="button"
                   className="font-medium text-indigo-600 hover:text-indigo-500"
                 >
