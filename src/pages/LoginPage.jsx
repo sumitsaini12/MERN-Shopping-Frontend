@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Login from "../features/auth/components/Login";
 function LoginPage() {
   return (
@@ -7,4 +8,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default memo(LoginPage);

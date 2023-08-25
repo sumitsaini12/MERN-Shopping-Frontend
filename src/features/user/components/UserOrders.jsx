@@ -12,7 +12,6 @@ function UserOrders() {
   const dispatch = useDispatch();
   const orders = useSelector(selectUserOrders);
   const status = useSelector(selectUserInfoStatus);
-  console.log("orders", orders);
 
   useEffect(() => {
     dispatch(fetchLoggedInUserOrderAsync());

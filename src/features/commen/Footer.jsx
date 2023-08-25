@@ -1,3 +1,4 @@
+import { memo } from "react";
 function Footer() {
   return (
     <>
@@ -38,7 +39,7 @@ function Footer() {
               <span className="px-2">About us</span>
               <span className="px-2 border-l">Contact us</span>
               <span className="px-2 border-l">Privacy Policy</span>
-            </div> 
+            </div>
           </div>
         </div>
       </div>
@@ -46,4 +47,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default memo(Footer);

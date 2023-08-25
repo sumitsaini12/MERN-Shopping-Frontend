@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import ForgotPassword from "../features/auth/components/ForgotPassword";
 
 function ForgotPasswordPage() {

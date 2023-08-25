@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
@@ -26,6 +26,7 @@ import AdminProductDetailPage from "./pages/AdminProductDetailPage";
 import ProtectedAdmin from "./features/auth/components/ProtectedAdmin";
 import AdminProductFormPage from "./pages/AdminProductFormPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
+import StripeCheckout from "./pages/StripeCheckout";
 
 function App() {
   const user = useSelector(selectLoggedInUser);
@@ -42,6 +43,7 @@ function App() {
       dispatch(fetchLoggedInUserInfoAsync());
     }
   }, [dispatch, user]);
+
   return (
     <>
       {userChecked && (
@@ -90,6 +92,7 @@ function App() {
               </ProtectedAdmin>
             }
           />
+
           <Route
             path="/admin/product-detail/:id"
             element={<AdminProductDetailPage />}
@@ -121,6 +124,14 @@ function App() {
           <Route path="order-success/:id" element={<OrderSuccessPage />} />
           <Route path="/orders" element={<UserOrdersPage />} />
           <Route path="/profile" element={<UserProfilePage />} />
+          <Route
+            path="/stripe-checkout/"
+            element={
+              <Protected>
+                <StripeCheckout />
+              </Protected>
+            }
+          />
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>

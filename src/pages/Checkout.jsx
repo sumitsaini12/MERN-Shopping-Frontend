@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
@@ -127,11 +128,14 @@ function Checkout() {
   return (
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
-      {currentOrder && (
+      {currentOrder && currentOrder.paymentMethod === "cash" && (
         <Navigate
           to={`/order-success/${currentOrder.id}`}
           replace={true}
         ></Navigate>
+      )}
+      {currentOrder && currentOrder.paymentMethod === "card" && (
+        <Navigate to={`/stripe-checkout`} replace={true}></Navigate>
       )}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
@@ -345,14 +349,16 @@ function Checkout() {
                 </div>
 
                 <div className="mt-6 flex items-center justify-end gap-x-6">
-                  <motion.button {...clickButton}
+                  <motion.button
+                    {...clickButton}
                     onClick={handleReset}
                     type="button"
                     className="text-sm font-semibold leading-6 text-gray-900 px-4 py-1 rounded-md border"
                   >
                     Reset
                   </motion.button>
-                  <motion.button {...clickButton}
+                  <motion.button
+                    {...clickButton}
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
@@ -517,7 +523,8 @@ function Checkout() {
                                   cancelAction={() => setOpenModel(-1)}
                                   showModel={openModel === item.id}
                                 />
-                                <motion.button {...clickButton}
+                                <motion.button
+                                  {...clickButton}
                                   type="button"
                                   onClick={() => setOpenModel(item.id)}
                                   className="font-medium text-indigo-600 hover:text-indigo-500"
@@ -564,7 +571,8 @@ function Checkout() {
                     or
                     <Link to="/">
                       {" "}
-                      <motion.button {...clickButton}
+                      <motion.button
+                        {...clickButton}
                         type="button"
                         className="font-medium text-indigo-600 hover:text-indigo-500"
                       >
@@ -584,4 +592,4 @@ function Checkout() {
   );
 }
 
-export default Checkout;
+export default memo(Checkout);

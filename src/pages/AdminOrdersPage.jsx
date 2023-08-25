@@ -1,3 +1,4 @@
+import { memo } from "react";
 import AdminOrder from "../features/admin/components/AdminOrder";
 import NavBar from "../features/navbar/NavBar";
 
@@ -11,4 +12,4 @@ function AdminOrdersPage() {
   );
 }
 
-export default AdminOrdersPage;
+export default memo(AdminOrdersPage);

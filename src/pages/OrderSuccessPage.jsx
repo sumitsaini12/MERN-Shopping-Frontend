@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { resetCartAsync } from "../features/cart/cartSlice";
@@ -43,4 +43,4 @@ function OrderSuccessPage() {
   );
 }
 
-export default OrderSuccessPage;
+export default memo(OrderSuccessPage);

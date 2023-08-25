@@ -52,7 +52,7 @@ function ProductDetail() {
         quantity: 1,
       };
       dispatch(addToCartAsync(newItem));
-      //TODO: it will be based on server serponse of backend
+      //TODO: it will be based on server response of backend
       toast.success("Product added to Cart!", {
         position: "top-center",
       });

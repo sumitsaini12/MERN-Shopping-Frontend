@@ -1,16 +1,15 @@
-import React from "react";
+import { memo } from "react";
 import AdminProductDetail from "../features/admin/components/AdminProductDetail";
 import NavBar from "../features/navbar/NavBar";
 
-
 function AdminProductDetailPage() {
-    return ( 
-        <>
-            <NavBar>
-                <AdminProductDetail></AdminProductDetail>
-            </NavBar>
-        </>
-     );
+  return (
+    <>
+      <NavBar>
+        <AdminProductDetail></AdminProductDetail>
+      </NavBar>
+    </>
+  );
 }
 
-export default AdminProductDetailPage;
+export default memo(AdminProductDetailPage);

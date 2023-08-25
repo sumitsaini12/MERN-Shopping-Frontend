@@ -48,7 +48,6 @@ function AdminOrder() {
   }, [dispatch, page, sort]);
 
   const handleShow = (order) => {
-    console.log("handleShow");
     setEditableOrderId(-1);
   };
 

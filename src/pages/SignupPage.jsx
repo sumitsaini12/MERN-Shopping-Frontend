@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Signup from "../features/auth/components/Signup";
 
 function SignupPage() {
@@ -8,4 +9,4 @@ function SignupPage() {
   );
 }
 
-export default SignupPage;
+export default memo(SignupPage);

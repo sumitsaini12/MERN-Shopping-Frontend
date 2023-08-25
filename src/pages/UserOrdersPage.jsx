@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import UserOrders from "../features/user/components/UserOrders";
 import NavBar from "../features/navbar/NavBar";
 

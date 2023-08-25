@@ -1,3 +1,4 @@
+import { memo } from "react";
 import AdminProductList from "../features/admin/components/AdminProductList";
 import NavBar from "../features/navbar/NavBar";
 
@@ -11,4 +12,4 @@ function AdminHome() {
   );
 }
 
-export default AdminHome;
+export default memo(AdminHome);

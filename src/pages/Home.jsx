@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Footer from "../features/commen/Footer";
 import NavBar from "../features/navbar/NavBar";
 import ProductList from "../features/product/components/ProductList";
@@ -13,4 +14,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default memo(Home);

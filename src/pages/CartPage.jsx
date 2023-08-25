@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Cart from "../features/cart/Cart";
 
 function CartPage() {
@@ -8,4 +9,4 @@ function CartPage() {
   );
 }
 
-export default CartPage;
+export default memo(CartPage);

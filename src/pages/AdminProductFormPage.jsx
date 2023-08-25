@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import ProductForm from "../features/admin/components/ProductForm";
 import NavBar from "../features/navbar/NavBar";
 

@@ -11,12 +11,8 @@ import { selectItems } from "../cart/cartSlice";
 import { motion } from "framer-motion";
 import { clickButton, navberButton } from "../../app/style";
 import { selectUserInfo } from "../user/userSlice";
+import avatar from "/avatar.png";
 
-const userProfile = {
-  name: "Sumit kumar",
-  email: "sumitsaini95488@gmail.com",
-  imageUrl: "/avatar.png",
-};
 const navigation = [
   { name: "Products", link: "/", user: true },
   { name: "Products", link: "/admin", admin: true },
@@ -111,8 +107,8 @@ function NavBar({ children }) {
                               <motion.div {...clickButton}>
                                 <img
                                   className="h-8 w-8 rounded-full"
-                                  src={userProfile.imageUrl}
-                                  alt=""
+                                  src={avatar}
+                                  alt="avatar img..."
                                 />
                               </motion.div>
                             </Menu.Button>
@@ -196,16 +192,16 @@ function NavBar({ children }) {
                         <div className="flex-shrink-0">
                           <img
                             className="h-10 w-10 rounded-full"
-                            src={userProfile.imageUrl}
+                            src={avatar}
                             alt=""
                           />
                         </div>
                         <div className="ml-3">
                           <div className="text-base font-medium leading-none text-white">
-                            {userProfile.name}
+                            {userInfo.name}
                           </div>
                           <div className="text-sm font-medium leading-none text-gray-400">
-                            {userProfile.email}
+                            {userInfo.email}
                           </div>
                         </div>
                       </div>
